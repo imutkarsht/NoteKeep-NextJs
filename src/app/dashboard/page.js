@@ -1,17 +1,60 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Popup } from "@/components/Popup";
+import { toast } from "react-toastify";
+import { UpdatePopup } from "@/components/UpdatePopup";
 
 const Dashboard = () => {
+   const [notes, setNotes] = useState([]);
+   const [clickedNote, setClickedNote] = useState(null);
+
+   useEffect(() => {
+      getAllNotes();
+   }, []);
+
+   const handleUpdate = (note) => {
+      setClickedNote(note);
+   };
+
+   const handleUpdatedNote = (updatedNote) => {
+      setNotes((prevNotes) =>
+         prevNotes.map((note) =>
+            note._id === updatedNote._id ? updatedNote : note
+         )
+      );
+   };
+
+   const getAllNotes = async () => {
+      try {
+         const response = await fetch("/api/notes", {
+            method: "GET",
+            headers: {
+               "Content-Type": "application/json",
+            },
+         });
+
+         const data = await response.json();
+
+         if (response.ok) {
+            toast.success("Notes Fetched Successfully");
+            setNotes(data.notes);
+         } else {
+            toast.error("Error Fetching notes: " + data.message);
+         }
+      } catch (error) {
+         console.error("Error fetching notes:", error);
+         toast.warning("Something went wrong!");
+      }
+   };
+
    return (
       <div className="flex min-h-screen bg-zinc-100 mt-16 dark:bg-zinc-900">
          {/* Sidebar */}
-         <div className="w-60 bg-zinc-200 dark:bg-zinc-800  text-black dark:text-white p-6 space-y-6">
+         <div className="w-60 bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white p-6 space-y-6">
             <h1 className="text-2xl font-semibold text-center">Note Keep</h1>
             <ul className="space-y-4">
                <Popup />
-
                <li className="cursor-pointer hover:bg-yellow-600 dark:hover:bg-yellow-500 p-2 rounded">
                   <Link href="/dashboard">View Notes</Link>
                </li>
@@ -54,56 +97,43 @@ const Dashboard = () => {
 
             {/* Notes Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-               {/* Mock Note Card */}
-               <div className="bg-white dark:bg-zinc-800 p-4 rounded-lg shadow-lg">
-                  <h3 className="text-xl font-semibold text-yellow-500">
-                     Note Title
-                  </h3>
-                  <p className="text-zinc-600 dark:text-zinc-300 mt-2">
-                     This is a short description of the note content.
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                     <span className="bg-yellow-400 text-white px-3 py-1 rounded-md text-sm">
-                        work
-                     </span>
-                     <span className="bg-yellow-400 text-white px-3 py-1 rounded-md text-sm">
-                        urgent
-                     </span>
-                  </div>
-               </div>
+               {notes.length > 0 ? (
+                  notes.map((note) => (
+                     <div
+                        key={note._id}
+                        className="relative p-6 bg-white dark:bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 ease-in-out"
+                     >
+                        <div className="absolute top-2 right-2 flex space-x-2">
+                           <UpdatePopup
+                              note={note}
+                              onUpdate={handleUpdatedNote}
+                           />
+                        </div>
 
-               {/* Repeat the note card for multiple notes */}
-               <div className="bg-white dark:bg-zinc-800 p-4 rounded-lg shadow-lg">
-                  <h3 className="text-xl font-semibold text-yellow-500">
-                     Another Note
-                  </h3>
-                  <p className="text-zinc-600 dark:text-zinc-300 mt-2">
-                     This is a short description of the second note.
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                     <span className="bg-yellow-400 text-white px-3 py-1 rounded-md text-sm">
-                        study
-                     </span>
-                     <span className="bg-yellow-400 text-white px-3 py-1 rounded-md text-sm">
-                        important
-                     </span>
-                  </div>
-               </div>
+                        <h3 className="text-2xl font-semibold text-yellow-500">
+                           {note.title}
+                        </h3>
+                        <p className="text-sm text-black dark:text-white mt-2">
+                           {note.content.length > 100
+                              ? `${note.content.substring(0, 100)}...`
+                              : note.content}
+                        </p>
 
-               {/* More Note Cards */}
-               <div className="bg-white dark:bg-zinc-800 p-4 rounded-lg shadow-lg">
-                  <h3 className="text-xl font-semibold text-yellow-500">
-                     Yet Another Note
-                  </h3>
-                  <p className="text-zinc-600 dark:text-zinc-300 mt-2">
-                     This is a short description of another note.
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                     <span className="bg-yellow-400 text-white px-3 py-1 rounded-md text-sm">
-                        personal
-                     </span>
-                  </div>
-               </div>
+                        <div className="mt-4 flex flex-wrap space-x-2">
+                           {note.tags.map((tag, index) => (
+                              <span
+                                 key={index}
+                                 className="text-xs bg-yellow-100 text-yellow-600 py-1 px-3 rounded-full"
+                              >
+                                 {tag}
+                              </span>
+                           ))}
+                        </div>
+                     </div>
+                  ))
+               ) : (
+                  <p className="text-xl text-yellow-500">No notes available</p>
+               )}
             </div>
          </div>
       </div>
