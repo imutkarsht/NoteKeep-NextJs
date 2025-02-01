@@ -4,18 +4,14 @@ import Link from "next/link";
 import { Popup } from "@/components/Popup";
 import { toast } from "react-toastify";
 import { UpdatePopup } from "@/components/UpdatePopup";
+import { DeletePopup } from "@/components/DeletePopup";
 
 const Dashboard = () => {
    const [notes, setNotes] = useState([]);
-   const [clickedNote, setClickedNote] = useState(null);
 
    useEffect(() => {
       getAllNotes();
    }, []);
-
-   const handleUpdate = (note) => {
-      setClickedNote(note);
-   };
 
    const handleUpdatedNote = (updatedNote) => {
       setNotes((prevNotes) =>
@@ -23,6 +19,23 @@ const Dashboard = () => {
             note._id === updatedNote._id ? updatedNote : note
          )
       );
+   };
+
+   const handleDelete = async (id) => {
+      try {
+         const res = await fetch(`/api/delete/${id}`, { method: "DELETE" });
+         const data = await res.json();
+
+         if (res.ok) {
+            toast.success("Note deleted successfully");
+            setNotes(notes.filter((note) => note._id !== id));
+         } else {
+            toast.error(data.message || "Failed to delete note");
+         }
+      } catch (error) {
+         console.error("Error deleting note:", error);
+         toast.error("Error deleting note");
+      }
    };
 
    const getAllNotes = async () => {
@@ -107,6 +120,10 @@ const Dashboard = () => {
                            <UpdatePopup
                               note={note}
                               onUpdate={handleUpdatedNote}
+                           />
+                           <DeletePopup
+                              note={note}
+                              onDelete={() => handleDelete(note._id)}
                            />
                         </div>
 
