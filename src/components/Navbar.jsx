@@ -9,16 +9,16 @@ const Navbar = () => {
             <Link href={"/"}>Note Keep</Link>
          </h1>
          <ul className="flex items-center space-x-4">
-            <li className="hover:text-yellow-700 dark:hover:text-yellow-400 transition-all delay-150 ease-in-out text-xl">
+            <li className="hover:text-teal-700 dark:hover:text-teal-400 transition-all delay-150 ease-in-out text-xl">
                <Link href={"/about"}>About</Link>
             </li>
-            <li className="hover:text-yellow-700 dark:hover:text-yellow-400 transition-all delay-150 ease-in-out text-xl">
+            <li className="hover:text-teal-700 dark:hover:text-teal-400 transition-all delay-150 ease-in-out text-xl">
                <Link href={"/dashboard"}>Dashboard</Link>
             </li>
-            <li className="hover:text-yellow-700 dark:hover:text-yellow-400 transition-all delay-150 ease-in-out text-xl">
+            <li className="hover:text-teal-700 dark:hover:text-teal-400 transition-all delay-150 ease-in-out text-xl">
                <Link href={"/contact"}>Contact us</Link>
             </li>
-            <li className="hover:text-yellow-700 dark:hover:text-yellow-400 transition-all delay-150 ease-in-out text-xl">
+            <li className="hover:text-teal-700 dark:hover:text-teal-400 transition-all delay-150 ease-in-out text-xl">
                <Link href={"/features"}>Features</Link>
             </li>
          </ul>
@@ -27,7 +27,7 @@ const Navbar = () => {
                <DarkModeToggle className="ml-auto" />
             </div>
             <Link href={"/login"}>
-               <button className="p-2 text-xl bg-yellow-500 hover:bg-yellow-400 transition-all delay-150 ease-out text-white rounded-md px-4 ">
+               <button className="p-2 text-xl bg-teal-500 hover:bg-teal-400 transition-all delay-150 ease-out text-white rounded-md px-4 ">
                   Log in
                </button>
             </Link>

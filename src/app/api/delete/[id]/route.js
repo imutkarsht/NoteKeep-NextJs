@@ -7,7 +7,7 @@ connectDB();
 
 export async function DELETE(req, { params }) {
    try {
-      const { id } = params;
+      const { id } = await params;
 
       console.log(id);
 

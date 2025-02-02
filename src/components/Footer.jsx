@@ -9,7 +9,7 @@ const Footer = () => {
             <div className="flex flex-col items-center space-y-4 sm:flex-row sm:justify-between sm:space-y-0">
                {/* App Info */}
                <div className="text-center sm:text-left">
-                  <h3 className="text-xl font-semibold text-yellow-500">
+                  <h3 className="text-xl font-semibold text-teal-500">
                      Note Keep
                   </h3>
                   <p className="mt-2 text-sm text-black/70 dark:text-zinc-400">
@@ -22,25 +22,25 @@ const Footer = () => {
                <div className="flex space-x-6 mt-4 sm:mt-0">
                   <Link
                      href="/about"
-                     className="hover:text-yellow-500 transition-all"
+                     className="hover:text-teal-500 transition-all"
                   >
                      About
                   </Link>
                   <Link
                      href="/features"
-                     className="hover:text-yellow-500 transition-all"
+                     className="hover:text-teal-500 transition-all"
                   >
                      Features
                   </Link>
                   <Link
                      href="/contact"
-                     className="hover:text-yellow-500 transition-all"
+                     className="hover:text-teal-500 transition-all"
                   >
                      Contact
                   </Link>
                   <Link
                      href="/privacy"
-                     className="hover:text-yellow-500 transition-all"
+                     className="hover:text-teal-500 transition-all"
                   >
                      Privacy
                   </Link>
@@ -50,25 +50,25 @@ const Footer = () => {
                <div className="flex space-x-4 mt-4 sm:mt-0">
                   <a
                      href="#"
-                     className="text-xl text-zinc-900 hover:text-yellow-500 dark:text-zinc-50 dark:hover:text-yellow-500"
+                     className="text-xl text-zinc-900 hover:text-teal-500 dark:text-zinc-50 dark:hover:text-teal-500"
                   >
                      <FaFacebook />
                   </a>
                   <a
                      href="#"
-                     className="text-xl text-zinc-900 hover:text-yellow-500 dark:text-zinc-50 dark:hover:text-yellow-500"
+                     className="text-xl text-zinc-900 hover:text-teal-500 dark:text-zinc-50 dark:hover:text-teal-500"
                   >
                      <FaTwitter />
                   </a>
                   <a
                      href="#"
-                     className="text-xl text-zinc-900 hover:text-yellow-500 dark:text-zinc-50 dark:hover:text-yellow-500"
+                     className="text-xl text-zinc-900 hover:text-teal-500 dark:text-zinc-50 dark:hover:text-teal-500"
                   >
                      <FaLinkedin />
                   </a>
                   <a
                      href="#"
-                     className="text-xl text-zinc-900 hover:text-yellow-500 dark:text-zinc-50 dark:hover:text-yellow-500"
+                     className="text-xl text-zinc-900 hover:text-teal-500 dark:text-zinc-50 dark:hover:text-teal-500"
                   >
                      <FaGithub />
                   </a>

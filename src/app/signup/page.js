@@ -2,13 +2,12 @@ import Link from "next/link";
 import React from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 
-export default function LoginPage() {
+export default function SignUpPage() {
    return (
-      <div className="flex flex-col md:flex-row h-screen">
-         {/* Left Section */}
+      <div className="flex flex-col lg:flex-row h-screen">
          <div className="flex-1 bg-white dark:bg-zinc-800 flex flex-col justify-center items-center px-6">
             <h1 className="text-3xl font-bold mb-4 text-zinc-800 dark:text-zinc-100">
-               Sign In
+               Sign Up
             </h1>
             <div className="flex gap-4 mb-6">
                <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
@@ -31,6 +30,16 @@ export default function LoginPage() {
                </div>
                <div>
                   <label className="block text-zinc-700 dark:text-zinc-300 mb-2">
+                     Email
+                  </label>
+                  <input
+                     type="email"
+                     placeholder="Email"
+                     className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
+                  />
+               </div>
+               <div>
+                  <label className="block text-zinc-700 dark:text-zinc-300 mb-2">
                      Password
                   </label>
                   <input
@@ -43,28 +52,28 @@ export default function LoginPage() {
                   type="submit"
                   className="w-full bg-teal-500 dark:bg-teal-600 text-white py-2 rounded-lg font-semibold hover:bg-teal-600 dark:hover:bg-teal-700 transition"
                >
-                  Sign In
+                  Sign Up
                </button>
             </form>
-            {/* Link to Sign Up */}
-            <p className="mt-4 text-sm text-zinc-700 dark:text-zinc-300">
-               Don't have an account?{" "}
+            {/* Sign In link for smaller screens */}
+            <p className="mt-4 text-sm text-zinc-700 dark:text-zinc-300 lg:hidden">
+               Already have an account?{" "}
                <Link
-                  href="/signup"
-                  className="text-teal-500 dark:text-teal-400 hover:underline"
+                  href="/login"
+                  className="text-teal-500 dark:text-teal-400 font-semibold hover:underline"
                >
-                  Sign Up
+                  Sign In
                </Link>
             </p>
          </div>
 
          {/* Right Section */}
-         <div className="hidden md:flex flex-1 bg-teal-500 dark:bg-teal-600 flex-col justify-center items-center text-white">
-            <h1 className="text-3xl font-bold mb-4">Welcome to login</h1>
-            <p className="text-lg mb-6">Don't have an account?</p>
-            <Link href={"/signup"}>
+         <div className="hidden lg:flex flex-1 bg-teal-500 dark:bg-teal-600 flex-col justify-center items-center text-white">
+            <h1 className="text-3xl font-bold mb-4">Welcome to Sign Up</h1>
+            <p className="text-lg mb-6">Already have an account?</p>
+            <Link href={"/login"}>
                <button className="bg-white text-teal-500 dark:text-teal-600 px-6 py-2 rounded-lg font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-700 transition">
-                  Sign Up
+                  Sign In
                </button>
             </Link>
          </div>

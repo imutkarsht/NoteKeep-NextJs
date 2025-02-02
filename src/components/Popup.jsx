@@ -54,7 +54,7 @@ export function Popup() {
          <DialogTrigger asChild>
             <Button
                variant="outline"
-               className="bg-yellow-500 flex space-x-2 items-center hover:bg-yellow-400 text-dark dark:text-white"
+               className="bg-teal-500 flex space-x-2 items-center hover:bg-teal-400 text-dark dark:text-white"
             >
                <FaPlus />
                Create Note
@@ -62,7 +62,7 @@ export function Popup() {
          </DialogTrigger>
          <DialogContent className="sm:max-w-[425px] bg-zinc-100 dark:bg-zinc-800 rounded-lg p-6">
             <DialogHeader>
-               <DialogTitle className="text-yellow-500">
+               <DialogTitle className="text-teal-500">
                   Create Note
                </DialogTitle>
                <DialogDescription className="text-zinc-700 dark:text-zinc-300">
@@ -126,7 +126,7 @@ export function Popup() {
                <DialogFooter>
                   <Button
                      type="submit"
-                     className="bg-yellow-500 hover:bg-yellow-400 text-dark dark:text-white"
+                     className="bg-teal-500 hover:bg-teal-400 text-dark dark:text-white"
                   >
                      Save Note
                   </Button>

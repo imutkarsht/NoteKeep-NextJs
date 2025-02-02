@@ -77,7 +77,7 @@ const CreateNote = () => {
             </div>
             <button
                type="submit"
-               className="bg-yellow-500 text-white p-2 rounded mt-4"
+               className="bg-teal-500 text-white p-2 rounded mt-4"
             >
                Create Note
             </button>

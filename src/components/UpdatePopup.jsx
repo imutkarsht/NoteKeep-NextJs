@@ -62,14 +62,14 @@ export function UpdatePopup({ note, onUpdate }) {
          <DialogTrigger asChild>
             <Button
                variant="outline"
-               className="bg-yellow-500 rounded-full hover:bg-yellow-400 text-dark dark:text-white"
+               className="bg-teal-500 rounded-full hover:bg-teal-400 text-dark dark:text-white"
             >
                <FaPlus />
             </Button>
          </DialogTrigger>
          <DialogContent className="sm:max-w-[425px] bg-zinc-100 dark:bg-zinc-800 rounded-lg p-6">
             <DialogHeader>
-               <DialogTitle className="text-yellow-500">Edit Note</DialogTitle>
+               <DialogTitle className="text-teal-500">Edit Note</DialogTitle>
                <DialogDescription className="text-zinc-700 dark:text-zinc-300">
                   Modify the details of your note below
                </DialogDescription>
@@ -131,7 +131,7 @@ export function UpdatePopup({ note, onUpdate }) {
                <DialogFooter>
                   <Button
                      type="submit"
-                     className="bg-yellow-500 hover:bg-yellow-400 text-dark dark:text-white"
+                     className="bg-teal-500 hover:bg-teal-400 text-dark dark:text-white"
                   >
                      Update Note
                   </Button>

@@ -4,7 +4,7 @@ import { dummyReviews } from "@/util/featureData";
 const Reviews = () => {
    return (
       <div className="flex flex-col items-center justify-center space-y-8 pb-8 border-b-2 border-zinc-200 dark:border-zinc-800 w-[80vw]">
-         <h2 className="text-3xl font-bold text-yellow-500">Reviews</h2>
+         <h2 className="text-3xl font-bold text-teal-500">Reviews</h2>
 
          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {dummyReviews.map((review, index) => (
@@ -20,7 +20,7 @@ const Reviews = () => {
 
                   <h3 className="text-lg font-semibold mt-3">{review.name}</h3>
 
-                  <p className="text-yellow-800 text-xl">{'⭐'.repeat(review.rating)}</p>
+                  <p className="text-teal-800 text-xl">{'⭐'.repeat(review.rating)}</p>
 
                   <p className="text-center text-sm text-black/80 dark:text-white/80 mt-2">{review.comment}</p>
                </div>

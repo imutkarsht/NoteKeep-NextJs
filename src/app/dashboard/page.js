@@ -50,7 +50,6 @@ const Dashboard = () => {
          const data = await response.json();
 
          if (response.ok) {
-            toast.success("Notes Fetched Successfully");
             setNotes(data.notes);
          } else {
             toast.error("Error Fetching notes: " + data.message);
@@ -68,19 +67,19 @@ const Dashboard = () => {
             <h1 className="text-2xl font-semibold text-center">Note Keep</h1>
             <ul className="space-y-4">
                <Popup />
-               <li className="cursor-pointer hover:bg-yellow-600 dark:hover:bg-yellow-500 p-2 rounded">
+               <li className="cursor-pointer hover:bg-teal-600 dark:hover:bg-teal-500 p-2 rounded">
                   <Link href="/dashboard">View Notes</Link>
                </li>
-               <li className="cursor-pointer hover:bg-yellow-600 dark:hover:bg-yellow-500 p-2 rounded">
+               <li className="cursor-pointer hover:bg-teal-600 dark:hover:bg-teal-500 p-2 rounded">
                   <Link href="/dashboard/bin">Bin</Link>
                </li>
-               <li className="cursor-pointer hover:bg-yellow-600 dark:hover:bg-yellow-500 p-2 rounded">
+               <li className="cursor-pointer hover:bg-teal-600 dark:hover:bg-teal-500 p-2 rounded">
                   <Link href="/dashboard/search">Search Notes</Link>
                </li>
             </ul>
             <div>
                <h2 className="text-lg font-semibold">Filter by Tag</h2>
-               <select className="w-full p-2 mt-2 bg-yellow-600 rounded">
+               <select className="w-full p-2 mt-2 bg-teal-600 rounded">
                   <option value="">All Tags</option>
                   {["work", "study", "personal", "urgent", "important"].map(
                      (tag) => (
@@ -96,7 +95,7 @@ const Dashboard = () => {
          {/* Main Content Area */}
          <div className="flex-1 p-8 overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
-               <h2 className="text-3xl text-yellow-500 font-semibold">
+               <h2 className="text-3xl text-teal-500 font-semibold">
                   All Notes
                </h2>
                <div className="w-1/4">
@@ -127,7 +126,7 @@ const Dashboard = () => {
                            />
                         </div>
 
-                        <h3 className="text-2xl font-semibold text-yellow-500">
+                        <h3 className="text-2xl font-semibold text-teal-500">
                            {note.title}
                         </h3>
                         <p className="text-sm text-black dark:text-white mt-2">
@@ -140,7 +139,7 @@ const Dashboard = () => {
                            {note.tags.map((tag, index) => (
                               <span
                                  key={index}
-                                 className="text-xs bg-yellow-100 text-yellow-600 py-1 px-3 rounded-full"
+                                 className="text-xs bg-teal-100 text-teal-600 py-1 px-3 rounded-full"
                               >
                                  {tag}
                               </span>
@@ -149,7 +148,7 @@ const Dashboard = () => {
                      </div>
                   ))
                ) : (
-                  <p className="text-xl text-yellow-500">No notes available</p>
+                  <p className="text-xl text-teal-500">No notes available</p>
                )}
             </div>
          </div>

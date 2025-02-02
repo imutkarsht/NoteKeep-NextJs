@@ -4,7 +4,7 @@ import React from "react";
 const Features = () => {
    return (
       <div className="flex flex-col items-center justify-center space-y-6 pb-4 border-b-2 border-zinc-200 dark:border-zinc-800 w-[80vw]">
-         <h2 className="text-3xl font-bold text-yellow-500">Top Features</h2>
+         <h2 className="text-3xl font-bold text-teal-500">Top Features</h2>
 
          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {featureData.map((feature) => (
