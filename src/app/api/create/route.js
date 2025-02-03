@@ -9,7 +9,10 @@ export async function POST(req) {
     const { title, content, tags } = await req.json();
 
     if (!title || !content) {
-      return NextResponse.json({ message: 'Title and content are required.' }, { status: 400 });
+      return NextResponse.json(
+        { message: 'Title and content are required.' },
+        { status: 400 }
+      );
     }
 
     const newNote = await Note.create({
@@ -20,6 +23,9 @@ export async function POST(req) {
 
     return NextResponse.json(newNote, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ message: 'Error creating the note.', error }, { status: 500 });
+    return NextResponse.json(
+      { message: 'Error creating the note.', error },
+      { status: 500 }
+    );
   }
 }
