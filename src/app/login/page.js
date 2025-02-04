@@ -1,8 +1,14 @@
+import { login } from '@/actions/user';
+import { signIn } from '@/auth';
 import Link from 'next/link';
 import React from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 export default function LoginPage() {
+  const handleGithubSignin = async () => {
+    'use server';
+    signIn('github');
+  };
   return (
     <div className="flex flex-col md:flex-row h-screen">
       {/* Left Section */}
@@ -11,21 +17,24 @@ export default function LoginPage() {
           Sign In
         </h1>
         <div className="flex gap-4 mb-6">
-          <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
-            <FaGithub />
-          </button>
+          <form action={handleGithubSignin}>
+            <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
+              <FaGithub />
+            </button>
+          </form>
           <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
             <FaGoogle />
           </button>
         </div>
-        <form className="w-full max-w-sm space-y-4">
+        <form className="w-full max-w-sm space-y-4" action={login}>
           <div>
             <label className="block text-zinc-700 dark:text-zinc-300 mb-2">
-              Username
+              email
             </label>
             <input
-              type="text"
-              placeholder="Username"
+              type="email"
+              placeholder="email"
+              name="email"
               className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
             />
           </div>
@@ -36,6 +45,7 @@ export default function LoginPage() {
             <input
               type="password"
               placeholder="Password"
+              name="password"
               className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
             />
           </div>
