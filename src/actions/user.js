@@ -11,12 +11,13 @@ const login = async (FormData) => {
   const password = FormData.get('password');
 
   try {
-    await signIn('credentials', {
+    const user = await signIn('credentials', {
       redirect: false,
       callbackUrl: '/',
       email,
       password,
     });
+
   } catch (error) {
     return error;
   }

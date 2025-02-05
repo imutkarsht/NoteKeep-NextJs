@@ -19,7 +19,7 @@ const LoginPage = async () => {
 
   const session = await getSession();
   const user = session?.user;
-  if(user) redirect('/dashboard')
+  if (user) redirect('/dashboard');
 
   return (
     <div className="flex flex-col md:flex-row h-screen">
