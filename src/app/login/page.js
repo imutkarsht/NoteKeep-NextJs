@@ -1,20 +1,26 @@
 import { login } from '@/actions/user';
 import { signIn } from '@/auth';
+import { getSession } from '@/lib/getSession';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 
-export default function LoginPage() {
+const LoginPage = async () => {
   const handleGithubSignin = async () => {
     'use server';
     signIn('github');
   };
 
   const handleGoogleSignin = async () => {
-    'use server'
-    signIn('google')
-  }
-  
+    'use server';
+    signIn('google');
+  };
+
+  const session = await getSession();
+  const user = session?.user;
+  if(user) redirect('/dashboard')
+
   return (
     <div className="flex flex-col md:flex-row h-screen">
       {/* Left Section */}
@@ -88,4 +94,5 @@ export default function LoginPage() {
       </div>
     </div>
   );
-}
+};
+export default LoginPage;

@@ -1,10 +1,12 @@
 import { register } from '@/actions/user';
 import { signIn } from '@/auth';
+import { getSession } from '@/lib/getSession';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 
-export default function SignUpPage() {
+export default async function SignUpPage() {
   const handleGitHubSignin = async () => {
     'use server';
     await signIn('github');
@@ -14,6 +16,10 @@ export default function SignUpPage() {
     'use server';
     await signIn('google');
   };
+
+  const session = await getSession();
+  const user = session?.user;
+  if (user) redirect('/dahsboard');
 
   return (
     <div className="flex flex-col lg:flex-row h-screen">

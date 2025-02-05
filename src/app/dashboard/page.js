@@ -5,12 +5,13 @@ import { Popup } from '@/components/Popup';
 import { toast } from 'react-toastify';
 import { UpdatePopup } from '@/components/UpdatePopup';
 import { DeletePopup } from '@/components/DeletePopup';
+import { redirect, useRouter } from 'next/navigation';
 
 const Dashboard = () => {
   const [notes, setNotes] = useState([]);
-
   useEffect(() => {
     getAllNotes();
+    checkUserSession();
   }, []);
 
   const handleUpdatedNote = (updatedNote) => {
@@ -19,6 +20,20 @@ const Dashboard = () => {
         note._id === updatedNote._id ? updatedNote : note
       )
     );
+  };
+
+  const checkUserSession = async () => {
+    try {
+      const res = await fetch('/api/auth/session', { method: 'GET' });
+      const session = await res.json();
+
+      if (!session?.user) {
+        redirect('/login')
+      }
+    } catch (error) {
+      console.error('Error checking session:', error);
+      redirect('/login');
+    }
   };
 
   const handleDelete = async (id) => {
