@@ -9,6 +9,12 @@ export default function LoginPage() {
     'use server';
     signIn('github');
   };
+
+  const handleGoogleSignin = async () => {
+    'use server'
+    signIn('google')
+  }
+  
   return (
     <div className="flex flex-col md:flex-row h-screen">
       {/* Left Section */}
@@ -22,9 +28,11 @@ export default function LoginPage() {
               <FaGithub />
             </button>
           </form>
-          <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
-            <FaGoogle />
-          </button>
+          <form action={handleGoogleSignin}>
+            <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
+              <FaGoogle />
+            </button>
+          </form>
         </div>
         <form className="w-full max-w-sm space-y-4" action={login}>
           <div>

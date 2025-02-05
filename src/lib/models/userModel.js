@@ -18,6 +18,6 @@ const accountSchema = new mongoose.Schema(
 );
 
 // Check if the model already exists before defining it
-const Accounts = mongoose.model.Accounts || mongoose.model('Accounts', accountSchema);
+const Accounts = mongoose.models?.Accounts || mongoose.model('Accounts', accountSchema);
 
 export default Accounts;

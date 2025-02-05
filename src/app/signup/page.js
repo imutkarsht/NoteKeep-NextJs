@@ -21,18 +21,7 @@ export default function SignUpPage() {
         <h1 className="text-3xl font-bold mb-4 text-zinc-800 dark:text-zinc-100">
           Sign Up
         </h1>
-        <div className="flex gap-4 mb-6">
-          <form action={handleGitHubSignin}>
-            <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
-              <FaGithub />
-            </button>
-          </form>
-          <form action={handleGoogleSignin}>
-            <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
-              <FaGoogle />
-            </button>
-          </form>
-        </div>
+
         <form className="w-full max-w-sm space-y-4" action={register}>
           <div className="flex gap-4">
             <div className="w-1/2">
@@ -43,7 +32,7 @@ export default function SignUpPage() {
                 type="text"
                 name="firstname"
                 placeholder="First name"
-                className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
+                className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 rounded-md dark:text-zinc-100"
               />
             </div>
             <div className="w-1/2">
@@ -54,7 +43,7 @@ export default function SignUpPage() {
                 type="text"
                 placeholder="Last name"
                 name="lastname"
-                className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
+                className="w-full px-4 py-2 border rounded-md border-zinc-300 dark:border-zinc-600 focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
               />
             </div>
           </div>
@@ -66,7 +55,7 @@ export default function SignUpPage() {
               type="email"
               name="email"
               placeholder="Email"
-              className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
+              className="w-full px-4 py-2 border rounded-md border-zinc-300 dark:border-zinc-600 focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
             />
           </div>
           <div>
@@ -77,16 +66,38 @@ export default function SignUpPage() {
               type="password"
               placeholder="Password"
               name="password"
-              className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
+              className="w-full px-4 py-2 border rounded-md border-zinc-300 dark:border-zinc-600 focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-teal-500 dark:bg-teal-600 text-white py-2 rounded-lg font-semibold hover:bg-teal-600 dark:hover:bg-teal-700 transition"
+            className="w-full bg-teal-500 dark:bg-teal-600 rounded-md text-white py-2 font-semibold hover:bg-teal-600 dark:hover:bg-teal-700 transition"
           >
             Sign Up
           </button>
         </form>
+
+        {/* Updated OAuth Buttons */}
+        <div className="flex gap-4 mt-4 mb-2 w-full max-w-sm">
+          {/* GitHub Button */}
+          <button
+            onClick={handleGitHubSignin}
+            className="flex-1 bg-black rounded-md text-white border border-zinc-700 flex justify-center items-center py-3 transition hover:bg-zinc-900"
+          >
+            <FaGithub className="text-xl" />
+            <span className="ml-2">Sign in with GitHub</span>
+          </button>
+
+          {/* Google Button */}
+          <button
+            onClick={handleGoogleSignin}
+            className="flex-1 bg-white text-black border rounded-md border-zinc-300 flex justify-center items-center py-3 transition hover:bg-zinc-200"
+          >
+            <FaGoogle className="text-xl" />
+            <span className="ml-2">Sign in with Google</span>
+          </button>
+        </div>
+
         <p className="mt-4 text-sm text-zinc-700 dark:text-zinc-300 lg:hidden">
           Already have an account?{' '}
           <Link
@@ -102,7 +113,7 @@ export default function SignUpPage() {
         <h1 className="text-3xl font-bold mb-4">Welcome to Sign Up</h1>
         <p className="text-lg mb-6">Already have an account?</p>
         <Link href={'/login'}>
-          <button className="bg-white text-teal-500 dark:text-teal-600 px-6 py-2 rounded-lg font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-700 transition">
+          <button className="bg-white rounded-md text-teal-500 dark:text-teal-600 px-6 py-2 font-semibold hover:bg-zinc-100 dark:hover:bg-zinc-700 transition">
             Sign In
           </button>
         </Link>
