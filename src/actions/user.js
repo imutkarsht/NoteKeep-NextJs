@@ -1,10 +1,10 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import connectDB from '../../config/db';
-import User from '../../models/userModel';
+import connectDB from '../lib/db';
 import { hash } from 'bcryptjs';
 import { signIn } from '@/auth';
+import Accounts from '../lib/models/userModel';
 
 const login = async (FormData) => {
   const email = FormData.get('email');
@@ -34,12 +34,12 @@ const register = async (FormData) => {
 
   await connectDB();
 
-  const existingUser = await User.findOne({ email });
+  const existingUser = await Accounts.findOne({ email });
   if (existingUser) throw new Error('User already exists');
 
   const hashedPassword = await hash(password, 12);
 
-  const newUser = await User.create({
+  const newUser = await Accounts.create({
     firstName,
     lastName,
     email,

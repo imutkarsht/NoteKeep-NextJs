@@ -10,6 +10,11 @@ export default function SignUpPage() {
     await signIn('github');
   };
 
+  const handleGoogleSignin = async () => {
+    'use server';
+    await signIn('google');
+  };
+
   return (
     <div className="flex flex-col lg:flex-row h-screen">
       <div className="flex-1 bg-white dark:bg-zinc-800 flex flex-col justify-center items-center px-6">
@@ -22,9 +27,11 @@ export default function SignUpPage() {
               <FaGithub />
             </button>
           </form>
-          <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
-            <FaGoogle />
-          </button>
+          <form action={handleGoogleSignin}>
+            <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
+              <FaGoogle />
+            </button>
+          </form>
         </div>
         <form className="w-full max-w-sm space-y-4" action={register}>
           <div className="flex gap-4">

@@ -1,9 +1,10 @@
 import NextAuth, { CredentialsSignin } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import Github from 'next-auth/providers/github';
-import User from '../models/userModel';
+import Google from 'next-auth/providers/google';
 import { compare } from 'bcryptjs';
-import connectDB from '../config/db';
+import connectDB from './lib/db';
+import Accounts from '@/lib/models/userModel';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -24,7 +25,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         await connectDB();
 
-        const user = await User.findOne({ email }).select('+password +role');
+        const user = await Accounts.findOne({ email }).select(
+          '+password +role'
+        );
 
         if (!user) {
           throw new CredentialsSignin({ cause: 'Invalid email or password' });
@@ -54,6 +57,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Github({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    }),
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
 

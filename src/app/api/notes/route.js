@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/../config/db';
-import Note from '@/../models/noteModel';
+import connectDB from '@/lib/db';
+import Note from '@/lib/models/noteModel';
 
 connectDB();
 
