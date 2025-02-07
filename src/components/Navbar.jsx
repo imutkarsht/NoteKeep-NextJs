@@ -9,7 +9,7 @@ const Navbar = async () => {
   const user = session?.user;
 
   return (
-    <nav className="fixed top-0 left-0 w-full flex items-center justify-between bg-zinc-100 dark:bg-zinc-900 text-black dark:text-zinc-50 py-4 shadow-lg border-b-2 border-zinc-200 dark:border-zinc-800 z-50 px-6">
+    <nav className="fixed top-0 left-0 w-full flex items-center justify-between lg:justify-evenly bg-zinc-100 dark:bg-zinc-900 text-black dark:text-zinc-50 py-4 shadow-lg border-b-2 border-zinc-200 dark:border-zinc-800 z-50 px-6">
       {/* Mobile Menu (Client-Side) */}
       <MobileMenu user={user} />
       <h1 className="text-xl md:text-3xl font-bold">

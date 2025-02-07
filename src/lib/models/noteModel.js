@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 const noteSchema = new mongoose.Schema(
   {
     title: {
@@ -14,6 +15,11 @@ const noteSchema = new mongoose.Schema(
     tags: {
       type: [String],
       default: [],
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Accounts',
+      required: true,
     },
   },
   {

@@ -4,9 +4,10 @@ import Note from '@/lib/models/noteModel';
 
 connectDB();
 
-export async function GET(req) {
+export async function GET(req, {params}) {
   try {
-    const notes = await Note.find({});
+    const { id } = await params;
+    const notes = await Note.find({ createdBy: id });
     if (notes) {
       return NextResponse.json(
         {

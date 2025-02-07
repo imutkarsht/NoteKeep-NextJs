@@ -6,7 +6,9 @@ connectDB();
 
 export async function POST(req) {
   try {
-    const { title, content, tags } = await req.json();
+    const { title, content, tags, userId } = await req.json();
+    console.log(userId);
+    
 
     if (!title || !content) {
       return NextResponse.json(
@@ -19,6 +21,7 @@ export async function POST(req) {
       title,
       content,
       tags,
+      createdBy: userId
     });
 
     return NextResponse.json(newNote, { status: 201 });

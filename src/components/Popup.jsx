@@ -10,19 +10,25 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useUser } from '@/context/UserContext';
 import { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 export function Popup() {
+  const { user, loading } = useUser();
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const userId = user?.id;
     const noteData = {
       title,
       content,
+      userId,
       tags: tags.split(',').map((tag) => tag.trim()),
     };
 

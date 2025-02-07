@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserProvider } from '@/context/UserContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -26,10 +27,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen min-w-screen flex flex-col bg-zinc-50 dark:bg-zinc-800 text-black dark:text-white`}
       >
-        <Navbar />
-        {children}
-        <ToastContainer />
-        <Footer />
+        <UserProvider>
+          <Navbar />
+          {children}
+          <ToastContainer />
+          <Footer />
+        </UserProvider>
       </body>
     </html>
   );
