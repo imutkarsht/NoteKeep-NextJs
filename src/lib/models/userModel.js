@@ -10,7 +10,7 @@ const accountSchema = new mongoose.Schema(
     image: {
       type: String,
       default:
-        'https://res-console.cloudinary.com/dsa97hyht/media_explorer_thumbnails/c2bebabd2529847478a413886bd8d96e/detailed',
+        '#',
     },
     authProviderId: { type: String },
   },
