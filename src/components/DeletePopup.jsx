@@ -10,7 +10,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { FaBitbucket } from 'react-icons/fa';
+import { Trash2 } from 'lucide-react';
 
 export function DeletePopup({ note, onDelete }) {
   return (
@@ -20,7 +20,7 @@ export function DeletePopup({ note, onDelete }) {
           variant="outline"
           className="bg-red-500 hover:bg-red-400 text-white p-2 rounded-md"
         >
-          <FaBitbucket />
+          <Trash2 />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="bg-zinc-100 dark:bg-zinc-800 rounded-lg p-6">

@@ -3,6 +3,7 @@ import DarkModeToggle from './DarkModeToggle';
 import MobileMenu from './MobileMenu';
 import { getSession } from '@/lib/getSession';
 import { signOut } from '@/auth';
+import { ProfileDropdown } from './ProfileDropdown';
 
 const Navbar = async () => {
   const session = await getSession();
@@ -38,15 +39,7 @@ const Navbar = async () => {
       <div className="flex items-center space-x-2">
         <DarkModeToggle />
         {user ? (
-          <button
-            onClick={async () => {
-              'use server';
-              await signOut();
-            }}
-            className="p-2 text-base md:text-xl bg-teal-500 hover:bg-teal-400 transition-all text-white rounded-md px-4"
-          >
-            Logout
-          </button>
+          <ProfileDropdown />
         ) : (
           <Link href="/login">
             <button className="p-2 text-base md:text-xl bg-teal-500 hover:bg-teal-400 transition-all text-white rounded-md px-4">

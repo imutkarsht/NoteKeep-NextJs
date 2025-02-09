@@ -10,8 +10,8 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Pencil } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { FaPlus } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 export function UpdatePopup({ note, onUpdate }) {
@@ -62,9 +62,9 @@ export function UpdatePopup({ note, onUpdate }) {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="bg-teal-500 rounded-full hover:bg-teal-400 text-dark dark:text-white"
+          className="p-2 rounded-lg bg-teal-500 text-white hover:bg-teal-600 dark:hover:bg-teal-400 transition-all shadow-md hover:shadow-lg"
         >
-          <FaPlus />
+          <Pencil size={18} className="text-white" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-zinc-100 dark:bg-zinc-800 rounded-lg p-6">

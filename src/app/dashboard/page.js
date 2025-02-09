@@ -53,7 +53,7 @@ const Dashboard = () => {
         headers: { 'Content-Type': 'application/json' },
       });
       const data = await response.json();
-      
+
       if (response.ok) {
         setNotes(data.notes);
       } else {
@@ -68,10 +68,10 @@ const Dashboard = () => {
   };
 
   const ShimmerEffect = () => (
-    <motion.div 
-      className="w-full h-32 bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse" 
-      initial={{ opacity: 0.6 }} 
-      animate={{ opacity: 1 }} 
+    <motion.div
+      className="w-full h-32 bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse"
+      initial={{ opacity: 0.6 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 1.2, repeat: Infinity, repeatType: 'reverse' }}
     />
   );
@@ -103,27 +103,55 @@ const Dashboard = () => {
 
         {/* Notes Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {isLoading
-            ? [...Array(6)].map((_, index) => <ShimmerEffect key={index} />)
-            : notes.length > 0
-            ? notes.map((note) => (
-                <div
-                  key={note._id}
-                  className="relative p-6 bg-white dark:bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 ease-in-out"
-                >
-                  <div className="absolute top-2 right-2 flex space-x-2">
-                    <UpdatePopup note={note} onUpdate={handleUpdatedNote} />
-                    <DeletePopup note={note} onDelete={() => handleDelete(note._id)} />
-                  </div>
-
-                  <h3 className="text-2xl font-semibold text-teal-500">{note.title}</h3>
-                  <p className="text-sm text-black dark:text-white mt-2">
-                    {note.content.length > 100 ? `${note.content.substring(0, 100)}...` : note.content}
-                  </p>
+          {isLoading ? (
+            [...Array(6)].map((_, index) => <ShimmerEffect key={index} />)
+          ) : notes.length > 0 ? (
+            notes.map((note) => (
+              <div
+                key={note._id}
+                className="relative p-6 max-w-md bg-gradient-to-br from-white to-gray-100 dark:from-zinc-800 dark:to-zinc-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out border border-gray-200 dark:border-zinc-700"
+              >
+                {/* Action Buttons */}
+                <div className="absolute top-3 right-3 flex space-x-2">
+                  <UpdatePopup note={note} onUpdate={handleUpdatedNote} />
+                  <DeletePopup
+                    note={note}
+                    onDelete={() => handleDelete(note._id)}
+                  />
                 </div>
-              ))
-            : <p className="text-xl text-teal-500">No notes available</p>
-          }
+
+                {/* Title */}
+                <h3 className="text-xl font-bold text-teal-600 dark:text-teal-400 mb-2">
+                  {note.title}
+                </h3>
+
+                {/* Content */}
+                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {note.content.length > 100
+                    ? `${note.content.substring(0, 100)}...`
+                    : note.content}
+                </p>
+
+                <div className="mt-4 flex items-center justify-between flex-wrap gap-2">
+                  <div className='flex items-center space-x-2'>
+                    {note.tags?.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-1 text-xs font-semibold rounded-lg bg-teal-100 text-teal-700 dark:bg-teal-900 dark:text-teal-200"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-4 flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
+                    <span>{new Date(note.createdAt).toLocaleDateString()}</span>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="text-xl text-teal-500">No notes available</p>
+          )}
         </div>
       </div>
     </div>
