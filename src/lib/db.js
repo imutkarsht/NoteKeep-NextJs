@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 const MONGO_URI = process.env.MONGO_URI;
 
+if (typeof window !== 'undefined') {
+  throw new Error('Mongoose should only be used on the server side');
+}
+
 if (!MONGO_URI) {
   throw new Error('Please define the MONGO_URI environment variable');
 }
@@ -14,7 +18,6 @@ if (!cached) {
 
 const connectDB = async () => {
   if (cached.conn) {
-    console.log('MongoDB is already connected');
     return cached.conn;
   }
 
@@ -25,7 +28,6 @@ const connectDB = async () => {
   }
 
   cached.conn = await cached.promise;
-  console.log('MongoDB connected');
   return cached.conn;
 };
 
