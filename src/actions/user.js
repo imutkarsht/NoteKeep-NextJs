@@ -1,6 +1,5 @@
 'use server';
 
-import { redirect } from 'next/navigation';
 import connectDB from '../lib/db';
 import { hash } from 'bcryptjs';
 import { signIn } from '@/auth';
