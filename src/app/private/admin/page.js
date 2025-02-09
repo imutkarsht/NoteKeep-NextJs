@@ -13,5 +13,16 @@ export default function AdminPanel() {
     redirect('/dashboard');
   }
 
-  return <div className="mt-24">Admin Panel</div>;
+  return (
+    <div className="flex flex-col items-start justify-start">
+      <h1 className="text-xl font-semibold text-start">
+        Welcome Admin,{' '}
+        <span className="font-bold capitalize text-2xl text-teal-500">
+          {loggedUser ? loggedUser?.name.split(' ')[0] : 'User'}
+        </span>
+      </h1>
+
+
+    </div>
+  );
 }
