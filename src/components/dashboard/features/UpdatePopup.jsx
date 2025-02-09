@@ -131,7 +131,7 @@ export function UpdatePopup({ note, onUpdate }) {
           <DialogFooter>
             <Button
               type="submit"
-              className="bg-teal-500 hover:bg-teal-400 text-dark dark:text-white"
+              className="bg-teal-500 hover:bg-teal-400 text-white"
             >
               Update Note
             </Button>

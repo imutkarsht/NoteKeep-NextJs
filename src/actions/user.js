@@ -13,13 +13,17 @@ const login = async (FormData) => {
   try {
     const user = await signIn('credentials', {
       redirect: false,
-      callbackUrl: '/',
       email,
       password,
     });
 
+    if (user?.error) {
+      return { success: false, message: 'Invalid email or password' };
+    }
+
+    return { success: true, message: 'Login successful' };
   } catch (error) {
-    return error;
+    return { success: false, message: 'Something went wrong. Try again!' };
   }
 };
 
@@ -30,13 +34,13 @@ const register = async (FormData) => {
   const password = FormData.get('password');
 
   if (!firstName || !lastName || !email || !password) {
-    throw new Error('Please fill all fields');
+    return { success: false, message: 'Please fill all fields' };
   }
 
   await connectDB();
 
   const existingUser = await Accounts.findOne({ email });
-  if (existingUser) throw new Error('User already exists');
+  if (existingUser) return { success: false, message: 'User already exists' };
 
   const hashedPassword = await hash(password, 12);
 
@@ -46,10 +50,13 @@ const register = async (FormData) => {
     email,
     password: hashedPassword,
   });
+
   if (newUser) {
     console.log('User created successfully');
-    redirect('/login');
+    return { success: true, message: 'Account created successfully!' };
   }
+
+  return { success: false, message: 'Something went wrong. Try again!' };
 };
 
 export { register, login };

@@ -1,6 +1,6 @@
-import Features from '@/components/Features';
-import Hero from '@/components/Hero';
-import Reviews from '@/components/Reviews';
+import Features from '@/components/homePage/Features';
+import Hero from '@/components/homePage/Hero';
+import Reviews from '@/components/homePage/Reviews';
 import React from 'react';
 
 const Home = () => {

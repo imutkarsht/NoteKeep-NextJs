@@ -56,11 +56,17 @@ export function ProfileDropdown() {
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56 dark:bg-zinc-900 bg-zinc-200 flex flex-col space-y-2 p-2 rounded-lg shadow-lg">
         <DropdownMenuGroup>
           <DropdownMenuItem>
             <Link href={'/dashboard'}>Dashboard</Link>
           </DropdownMenuItem>
+          {loggedUser?.role === 'admin' && (
+            <DropdownMenuItem asChild>
+              <Link href="/private/admin">Admin Panel</Link>
+            </DropdownMenuItem>
+          )}
+
           <DropdownMenuItem>
             <Link href={'/user/profile'}>Profile</Link>
           </DropdownMenuItem>

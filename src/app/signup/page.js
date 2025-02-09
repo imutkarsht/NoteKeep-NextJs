@@ -1,25 +1,41 @@
+'use client';
+
 import { register } from '@/actions/user';
-import { signIn } from '@/auth';
-import { getSession } from '@/lib/getSession';
+import { useUser } from '@/context/UserContext';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import React from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
-export default async function SignUpPage() {
-  const handleGitHubSignin = async () => {
-    'use server';
-    await signIn('github');
+export default function SignUpPage() {
+  const { user } = useUser();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  if (user) {
+    router.replace('/dashboard');
+    return null;
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(e.target);
+    const response = await register(formData);
+
+    setLoading(false);
+
+    if (response.success) {
+      toast.success(response.message);
+      setTimeout(() => {
+        router.push('/login');
+      }, 2000);
+    } else {
+      toast.error(response.message);
+    }
   };
-
-  const handleGoogleSignin = async () => {
-    'use server';
-    await signIn('google');
-  };
-
-  const session = await getSession();
-  const user = session?.user;
-  if (user) redirect('/dahsboard');
 
   return (
     <div className="flex flex-col lg:flex-row h-screen">
@@ -28,7 +44,7 @@ export default async function SignUpPage() {
           Sign Up
         </h1>
 
-        <form className="w-full max-w-sm space-y-4" action={register}>
+        <form className="w-full max-w-sm space-y-4" onSubmit={handleSubmit}>
           <div className="flex gap-4">
             <div className="w-1/2">
               <label className="block text-zinc-700 dark:text-zinc-300 mb-2">
@@ -38,6 +54,7 @@ export default async function SignUpPage() {
                 type="text"
                 name="firstname"
                 placeholder="First name"
+                required
                 className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 rounded-md dark:text-zinc-100"
               />
             </div>
@@ -49,6 +66,7 @@ export default async function SignUpPage() {
                 type="text"
                 placeholder="Last name"
                 name="lastname"
+                required
                 className="w-full px-4 py-2 border rounded-md border-zinc-300 dark:border-zinc-600 focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
               />
             </div>
@@ -61,6 +79,7 @@ export default async function SignUpPage() {
               type="email"
               name="email"
               placeholder="Email"
+              required
               className="w-full px-4 py-2 border rounded-md border-zinc-300 dark:border-zinc-600 focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
             />
           </div>
@@ -72,35 +91,34 @@ export default async function SignUpPage() {
               type="password"
               placeholder="Password"
               name="password"
+              required
               className="w-full px-4 py-2 border rounded-md border-zinc-300 dark:border-zinc-600 focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
             />
           </div>
           <button
             type="submit"
             className="w-full bg-teal-500 dark:bg-teal-600 rounded-md text-white py-2 font-semibold hover:bg-teal-600 dark:hover:bg-teal-700 transition"
+            disabled={loading}
           >
-            Sign Up
+            {loading ? 'Signing Up...' : 'Sign Up'}
           </button>
         </form>
 
-        {/* Updated OAuth Buttons */}
         <div className="flex gap-4 mt-4 mb-2 w-full max-w-sm">
-          {/* GitHub Button */}
           <button
-            onClick={handleGitHubSignin}
+            onClick={() => toast.info('Feature coming soon...')}
             className="flex-1 bg-black rounded-md text-white border border-zinc-700 flex justify-center items-center py-3 transition hover:bg-zinc-900"
           >
             <FaGithub className="text-xl" />
-            <span className="ml-2">Sign in with GitHub</span>
+            <span className="ml-2 text-xs md:text-base">Sign in with GitHub</span>
           </button>
 
-          {/* Google Button */}
           <button
-            onClick={handleGoogleSignin}
+            onClick={() => toast.info('Feature coming soon...')}
             className="flex-1 bg-white text-black border rounded-md border-zinc-300 flex justify-center items-center py-3 transition hover:bg-zinc-200"
           >
             <FaGoogle className="text-xl" />
-            <span className="ml-2">Sign in with Google</span>
+            <span className="ml-2 text-xs md:text-base">Sign in with Google</span>
           </button>
         </div>
 
@@ -114,7 +132,6 @@ export default async function SignUpPage() {
           </Link>
         </p>
       </div>
-
       <div className="hidden lg:flex flex-1 bg-gradient-to-b from-teal-200 to-teal-500 dark:to-teal-900 dark:from-teal-400 flex-col justify-center items-center text-white">
         <h1 className="text-3xl font-bold mb-4">Welcome to Sign Up</h1>
         <p className="text-lg mb-6">Already have an account?</p>

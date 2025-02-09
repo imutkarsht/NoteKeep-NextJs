@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import DarkModeToggle from './DarkModeToggle';
-import MobileMenu from './MobileMenu';
+import DarkModeToggle from './features/DarkModeToggle';
+import MobileMenu from '../homePage/MobileMenu';
 import { getSession } from '@/lib/getSession';
-import { signOut } from '@/auth';
-import { ProfileDropdown } from './ProfileDropdown';
+import { ProfileDropdown } from './features/ProfileDropdown';
 
 const Navbar = async () => {
   const session = await getSession();

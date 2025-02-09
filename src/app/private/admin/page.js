@@ -1,17 +1,17 @@
-import { getSession } from '@/lib/getSession';
+'use client';
+import { useUser } from '@/context/UserContext';
 import { redirect } from 'next/navigation';
 
-export default async function AdminPanel() {
-  const session = await getSession();
-  const user = session?.user;
+export default function AdminPanel() {
+  const { loggedUser } = useUser();
 
-  if (!user) {
+  if (!loggedUser) {
     redirect('/login');
   }
 
-  if (user?.role !== 'admin') {
+  if (loggedUser?.role !== 'admin') {
     redirect('/dashboard');
   }
 
-  return <div className='mt-24'>Admin Panel</div>;
+  return <div className="mt-24">Admin Panel</div>;
 }

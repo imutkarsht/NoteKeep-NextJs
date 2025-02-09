@@ -1,55 +1,69 @@
+'use client';
+
 import { login } from '@/actions/user';
-import { signIn } from '@/auth';
-import { getSession } from '@/lib/getSession';
+import { useUser } from '@/context/UserContext';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import React from 'react';
+import { useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import { redirect} from 'next/navigation';
 
-const LoginPage = async () => {
-  const handleGithubSignin = async () => {
-    'use server';
-    signIn('github');
+const LoginPage = () => {
+  const { user } = useUser();
+  const [loading, setLoading] = useState(false);
+  if (user) {
+    redirect('/dashboard');
+  }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(e.target);
+    const response = await login(formData);
+
+    setLoading(false);
+
+    if (response?.success) {
+      toast.success(response.message);
+      setTimeout(() => {
+        window.location.href =  '/dashboard';
+      }, 500);
+    } else {
+      toast.error(response.message || 'Login failed. Please try again.');
+    }
   };
-
-  const handleGoogleSignin = async () => {
-    'use server';
-    signIn('google');
-  };
-
-  const session = await getSession();
-  const user = session?.user;
-  if (user) redirect('/dashboard');
 
   return (
     <div className="flex flex-col md:flex-row h-screen">
-      {/* Left Section */}
       <div className="flex-1 bg-white dark:bg-zinc-800 flex flex-col justify-center items-center px-6">
         <h1 className="text-3xl font-bold mb-4 text-zinc-800 dark:text-zinc-100">
           Sign In
         </h1>
         <div className="flex gap-4 mb-6">
-          <form action={handleGithubSignin}>
-            <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
-              <FaGithub />
-            </button>
-          </form>
-          <form action={handleGoogleSignin}>
-            <button className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center">
-              <FaGoogle />
-            </button>
-          </form>
+          <button
+            className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center"
+            onClick={() => toast.warning('Feature not available yet!')}
+          >
+            <FaGithub />
+          </button>
+          <button
+            className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center"
+            onClick={() => toast.warning('Feature not available yet!')}
+          >
+            <FaGoogle />
+          </button>
         </div>
-        <form className="w-full max-w-sm space-y-4" action={login}>
+        <form className="w-full max-w-sm space-y-4" onSubmit={handleLogin}>
           <div>
             <label className="block text-zinc-700 dark:text-zinc-300 mb-2">
-              email
+              Email
             </label>
             <input
               type="email"
-              placeholder="email"
+              placeholder="Email"
               name="email"
-              className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
+              className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
+              required
             />
           </div>
           <div>
@@ -60,17 +74,18 @@ const LoginPage = async () => {
               type="password"
               placeholder="Password"
               name="password"
-              className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg focus:ring focus:ring-teal-300 dark:focus:ring-teal-500 bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
+              className="w-full px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
+              required
             />
           </div>
           <button
             type="submit"
             className="w-full bg-teal-500 dark:bg-teal-600 text-white py-2 rounded-lg font-semibold hover:bg-teal-600 dark:hover:bg-teal-700 transition"
+            disabled={loading}
           >
-            Sign In
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
-        {/* Link to Sign Up */}
         <p className="mt-4 text-sm text-zinc-700 dark:text-zinc-300">
           Don't have an account?{' '}
           <Link
@@ -82,7 +97,6 @@ const LoginPage = async () => {
         </p>
       </div>
 
-      {/* Right Section */}
       <div className="hidden md:flex flex-1 bg-teal-500 dark:bg-teal-600 flex-col justify-center items-center text-white">
         <h1 className="text-3xl font-bold mb-4">Welcome to login</h1>
         <p className="text-lg mb-6">Don't have an account?</p>
@@ -95,4 +109,5 @@ const LoginPage = async () => {
     </div>
   );
 };
+
 export default LoginPage;

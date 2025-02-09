@@ -98,6 +98,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         } catch (error) {
           throw new Error('Error while creating user');
         }
+        return true;
       }
 
       if (account?.provider === 'credentials') {

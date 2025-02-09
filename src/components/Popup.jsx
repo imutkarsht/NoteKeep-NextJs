@@ -60,7 +60,7 @@ export function Popup() {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="bg-teal-500 flex space-x-2 items-center hover:bg-teal-400 text-dark dark:text-white"
+          className="bg-teal-500 flex space-x-2 items-center hover:bg-teal-500 text-white"
         >
           <FaPlus />
           Create Note
