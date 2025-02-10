@@ -96,7 +96,7 @@ const VerifyUser = () => {
             value={userOtp}
             onChange={(e) => setUserOtp(e.target.value)}
             placeholder="Enter OTP"
-            className="border p-2 rounded-md w-40 text-center"
+            className="border p-2 rounded-md w-40 text-center text-black dark:text-white"
           />
           <button
             onClick={verifyOtp}
