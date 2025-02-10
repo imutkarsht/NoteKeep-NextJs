@@ -1,29 +1,27 @@
 'use server';
 
 import connectDB from '../lib/db';
-import { hash } from 'bcryptjs';
-import { signIn } from '@/auth';
 import Accounts from '../lib/models/userModel';
+import { compare, hash } from 'bcryptjs';
 
 const login = async (FormData) => {
-  const email = FormData.get('email');
-  const password = FormData.get('password');
+  const email = FormData.get('email')
+  const password = FormData.get('password')
 
-  try {
-    const user = await signIn('credentials', {
-      redirect: false,
-      email,
-      password,
-    });
-
-    if (user?.error) {
-      return { success: false, message: 'Invalid email or password' };
-    }
-
-    return { success: true, message: 'Login successful' };
-  } catch (error) {
-    return { success: false, message: 'Something went wrong. Try again!' };
+  if (!email || !password) {
+    return { success: false, message: 'Please provide email and password' };
   }
+
+  await connectDB();
+
+  const user = await Accounts.findOne({ email }).select("+password");
+
+  if (!user) return { success: false, message: 'Invalid email or password' };
+
+  const isMatched = await compare(password, user.password);
+  if (!isMatched) return { success: false, message: 'Invalid email or password' };
+
+  return { success: true, message: 'Login successful' };
 };
 
 const register = async (FormData) => {

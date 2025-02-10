@@ -1,36 +1,43 @@
 'use client';
 
+import { useState } from 'react';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+import { toast } from 'react-toastify';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { login } from '@/actions/user';
 import { useUser } from '@/context/UserContext';
-import Link from 'next/link';
-import { useState } from 'react';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { toast } from 'react-toastify';
-import { redirect} from 'next/navigation';
 
 const LoginPage = () => {
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
+
   if (user) {
-    redirect('/dashboard');
+    router.push('/dashboard');
   }
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     const formData = new FormData(e.target);
-    const response = await login(formData);
+    const email = formData.get('email');
+    const password = formData.get('password');
 
-    setLoading(false);
+    const res = await login(formData);
 
-    if (response?.success) {
-      toast.success(response.message);
+    if (res.success) {
+      await signIn('credentials', { email, password, redirect: true, callbackUrl: '/' });
+      toast.success(res.message);
       setTimeout(() => {
-        window.location.href =  '/dashboard';
+        redirect('/dashboard');
       }, 500);
     } else {
-      toast.error(response.message || 'Login failed. Please try again.');
+      toast.error(res.message || 'Login failed. Please try again.');
     }
+
+    setLoading(false);
   };
 
   return (
