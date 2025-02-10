@@ -99,9 +99,9 @@ const UserTable = () => {
               <TableHead>Avatar</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Role</TableHead>
-              <TableHead>Actions</TableHead>
               <TableHead>Join Date</TableHead>
               <TableHead>Join Time</TableHead>
+              <TableHead>Actions</TableHead>
               <TableHead>Admin Right</TableHead>
             </TableRow>
           </TableHeader>

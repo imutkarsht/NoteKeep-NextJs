@@ -9,8 +9,14 @@ import { redirect } from 'next/navigation';
 const Dashboard = () => {
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { user } = useUser();
-  if (!user) {redirect('/login');}
+  const { user, loading } = useUser();
+
+
+  useEffect(() => {
+    if (!loading && !user) {
+      redirect('/login');
+    }
+  }, [user, loading]);
 
   useEffect(() => {
     if (user) {

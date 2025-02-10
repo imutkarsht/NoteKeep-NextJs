@@ -1,17 +1,23 @@
 'use client';
 import { useUser } from '@/context/UserContext';
-import { redirect } from 'next/navigation';
+import {  useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function AdminPanel() {
-  const { loggedUser } = useUser();
+  const { loggedUser, fetchLoggedUser } = useUser();
+  const router = useRouter();
 
-  if (!loggedUser) {
-    redirect('/login');
-  }
-
-  if (loggedUser?.role !== 'admin') {
-    redirect('/dashboard');
-  }
+  useEffect(() => {
+    if (!fetchLoggedUser && !loggedUser) {
+      router.push('/login');
+    }
+    if (loggedUser?.role !== 'admin') {
+     router.push('/dashboard');
+    }
+    else{
+      router.push('/private/admin')
+    }
+  }, [loggedUser, fetchLoggedUser]);
 
   return (
     <div className="flex flex-col items-start justify-start">
@@ -21,8 +27,6 @@ export default function AdminPanel() {
           {loggedUser ? loggedUser?.name.split(' ')[0] : 'User'}
         </span>
       </h1>
-
-
     </div>
   );
 }

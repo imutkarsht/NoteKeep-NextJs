@@ -3,11 +3,9 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Lock, PanelLeftClose, PanelRightClose } from 'lucide-react';
-import { useUser } from '@/context/UserContext';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const { loggedUser } = useUser();
 
   return (
     <>
@@ -22,9 +20,9 @@ const Sidebar = () => {
         initial={{ x: -250 }}
         animate={{ x: isOpen ? 0 : -250 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className={`fixed md:relative top-14 md:top-0 left-0 min-h-[98vh] md:min-h-[92vh] md:h-auto w-60 bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white p-2 py-6 space-y-6 z-40 shadow-lg md:shadow-none ${
+        className={`fixed md:relative top-14 md:top-0 left-0 h-[93vh] w-60 bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white p-2 py-6 space-y-6 z-40 shadow-lg md:shadow-none ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } md:translate-x-0 md:block`}
+        } md:translate-x-0 md:block h-full md:h-auto`}
       >
         <div className="flex items-center justify-start space-x-4 border-b-2 border-zinc-200 pb-3">
           <Link href="/private/admin">

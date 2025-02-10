@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
@@ -10,13 +10,20 @@ import { login } from '@/actions/user';
 import { useUser } from '@/context/UserContext';
 
 const LoginPage = () => {
-  const { user } = useUser();
+  const { loggedUser, fetchingLoggedUser } = useUser();
   const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
-  if (user) {
-    router.push('/dashboard');
-  }
+  useEffect(() => {
+    if (!fetchingLoggedUser) {
+      if (loggedUser?.role === 'admin') {
+        router.replace('/private/admin');
+      } else if (loggedUser?.role === 'user') {
+        router.replace('/dashboard');
+      }
+    }
+  }, [loggedUser, fetchingLoggedUser, router]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
