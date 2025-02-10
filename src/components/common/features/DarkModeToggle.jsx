@@ -1,6 +1,6 @@
 'use client';
-import { CiDark, CiLight } from 'react-icons/ci';
 import { useEffect, useState } from 'react';
+import { Moon, Sun } from 'lucide-react';
 
 const DarkModeToggle = () => {
   const [theme, setTheme] = useState('light');
@@ -30,9 +30,9 @@ const DarkModeToggle = () => {
       className="p-2 text-xl bg-zinc-200 dark:bg-zinc-700 rounded-lg"
     >
       {theme === 'dark' ? (
-        <CiLight className="w-6 h-6 text-gray-800" />
+        <Sun className="w-6 h-6 text-gray-200" />
       ) : (
-        <CiDark className="w-6 h-6 text-gray-200" />
+        <Moon className="w-6 h-6 text-gray-800" />
       )}
     </button>
   );
