@@ -30,9 +30,9 @@ const DarkModeToggle = () => {
       className="p-2 text-xl bg-zinc-200 dark:bg-zinc-700 rounded-lg"
     >
       {theme === 'dark' ? (
-        <CiDark className="w-6 h-6 text-gray-200" />
-      ) : (
         <CiLight className="w-6 h-6 text-gray-800" />
+      ) : (
+        <CiDark className="w-6 h-6 text-gray-200" />
       )}
     </button>
   );

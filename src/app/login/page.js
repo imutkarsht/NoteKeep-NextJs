@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
@@ -12,6 +12,7 @@ import { useUser } from '@/context/UserContext';
 const LoginPage = () => {
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   if (user) {
     router.push('/dashboard');
@@ -28,7 +29,12 @@ const LoginPage = () => {
     const res = await login(formData);
 
     if (res.success) {
-      await signIn('credentials', { email, password, redirect: true, callbackUrl: '/' });
+      await signIn('credentials', {
+        email,
+        password,
+        redirect: true,
+        callbackUrl: '/',
+      });
       toast.success(res.message);
       setTimeout(() => {
         redirect('/dashboard');
