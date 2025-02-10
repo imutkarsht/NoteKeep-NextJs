@@ -27,12 +27,12 @@ const DarkModeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 text-xl bg-zinc-200 dark:bg-zinc-700 rounded-lg"
+      className="p-2 text-xl rounded-lg"
     >
       {theme === 'dark' ? (
-        <Sun className="w-6 h-6 text-gray-200" />
+        <Sun size={26} className="w-6 h-6 text-gray-200" />
       ) : (
-        <Moon className="w-6 h-6 text-gray-800" />
+        <Moon size={26} className="w-6 h-6 text-gray-800" />
       )}
     </button>
   );

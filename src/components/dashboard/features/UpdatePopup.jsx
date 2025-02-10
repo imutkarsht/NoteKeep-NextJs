@@ -60,12 +60,12 @@ export function UpdatePopup({ note, onUpdate }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className="p-2 rounded-lg bg-teal-500 text-white hover:bg-teal-600 dark:hover:bg-teal-400 transition-all shadow-md hover:shadow-lg"
+        <button
+          
+          className="rounded-full px-2 text-black hover:text-black hover:bg-teal-400  transition-all shadow-md hover:shadow-lg"
         >
-          <Pencil size={18} className="text-white" />
-        </Button>
+          <Pencil size={22} className="dark:text-white hover:text-white text-black" />
+        </button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-zinc-100 dark:bg-zinc-800 rounded-lg p-6">
         <DialogHeader>

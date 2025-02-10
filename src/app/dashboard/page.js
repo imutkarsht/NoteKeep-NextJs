@@ -5,12 +5,14 @@ import { useUser } from '@/context/UserContext';
 import Sidebar from '@/components/dashboard/Sidebar';
 import NotesGrid from '@/components/dashboard/NotesGrid';
 import { redirect } from 'next/navigation';
+import { Input } from '@/components/ui/input';
 
 const Dashboard = () => {
   const [notes, setNotes] = useState([]);
+  const [allNotes, setAllNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { user, loading } = useUser();
-
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     if (!loading && !user) {
@@ -23,6 +25,21 @@ const Dashboard = () => {
       getAllNotes();
     }
   }, [user]);
+
+  // Live search
+  useEffect(() => {
+    if (!search) {
+      setNotes(allNotes);
+    } else {
+      const searchQuery = search.toLowerCase();
+      const filteredNotes = allNotes.filter(
+        (note) =>
+          note.title.toLowerCase().includes(searchQuery) ||
+          note.content.toLowerCase().includes(searchQuery)
+      );
+      setNotes(filteredNotes);
+    }
+  }, [search, allNotes]);
 
   const handleUpdatedNote = (updatedNote) => {
     setNotes((prevNotes) =>
@@ -39,7 +56,8 @@ const Dashboard = () => {
 
       if (res.ok) {
         toast.success('Note deleted successfully');
-        setNotes(notes.filter((note) => note._id !== id));
+        setNotes((prev) => prev.filter((note) => note._id !== id));
+        setAllNotes((prev) => prev.filter((note) => note._id !== id));
       } else {
         toast.error(data.message || 'Failed to delete note');
       }
@@ -61,6 +79,7 @@ const Dashboard = () => {
 
       if (response.ok) {
         setNotes(data.notes);
+        setAllNotes(data.notes);
       } else {
         toast.error('Error Fetching notes: ' + data.message);
       }
@@ -77,7 +96,16 @@ const Dashboard = () => {
       <Sidebar />
       <div className="flex-1 p-8 overflow-y-auto">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl text-teal-500 font-semibold">All Notes</h2>
+          <h2 className="text-xl md:text-3xl text-teal-500 font-semibold">
+            All Notes
+          </h2>
+          <Input
+            type="text"
+            placeholder="Search notes"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="md:max-w-[20vw] max-w-[40vw] rounded-md placeholder:text-sm md:placeholder:text-base bg-zinc-200 dark:bg-zinc-800 focus:ring-none focus:border-none outline-none dark:focus:bg-zinc-900 focus-visible:ring-teal-400 focus:bg-zinc-100"
+          />
         </div>
         <NotesGrid
           notes={notes}
