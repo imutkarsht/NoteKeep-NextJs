@@ -8,7 +8,7 @@ import {
   TableRow,
 } from '../ui/table';
 
-import { motion } from 'framer-motion';
+import { Skeleton } from '../ui/skeleton';
 
 const TableShimmer = () => {
   return (
@@ -25,43 +25,19 @@ const TableShimmer = () => {
         {Array.from({ length: 4 }).map((_, index) => (
           <TableRow key={index}>
             <TableCell>
-              <motion.div
-                className="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-700"
-                animate={{ opacity: [0.6, 1, 0.6] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-              />
+              <Skeleton className="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-700" />
             </TableCell>
             <TableCell>
-              <motion.div
-                className="h-4 w-32 bg-gray-300 dark:bg-gray-700 rounded"
-                animate={{ opacity: [0.6, 1, 0.6] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-              />
+              <Skeleton className="h-4 w-32 bg-gray-300 dark:bg-gray-700 rounded" />
             </TableCell>
             <TableCell>
-              <motion.div
-                className="h-4 w-20 bg-gray-300 dark:bg-gray-700 rounded"
-                animate={{ opacity: [0.6, 1, 0.6] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-              />
+              <Skeleton className="h-4 w-20 bg-gray-300 dark:bg-gray-700 rounded" />
             </TableCell>
             <TableCell>
               <div className="flex gap-2">
-                <motion.div
-                  className="h-8 w-20 bg-gray-300 dark:bg-gray-700 rounded"
-                  animate={{ opacity: [0.6, 1, 0.6] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
-                />
-                <motion.div
-                  className="h-8 w-20 bg-gray-300 dark:bg-gray-700 rounded"
-                  animate={{ opacity: [0.6, 1, 0.6] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
-                />
-                <motion.div
-                  className="h-8 w-20 bg-gray-300 dark:bg-gray-700 rounded"
-                  animate={{ opacity: [0.6, 1, 0.6] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
-                />
+                <Skeleton className="h-8 w-20 bg-gray-300 dark:bg-gray-700 rounded" />
+                <Skeleton className="h-8 w-20 bg-gray-300 dark:bg-gray-700 rounded" />
+                <Skeleton className="h-8 w-20 bg-gray-300 dark:bg-gray-700 rounded" />
               </div>
             </TableCell>
           </TableRow>

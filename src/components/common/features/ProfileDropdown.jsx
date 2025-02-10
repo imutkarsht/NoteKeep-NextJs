@@ -1,6 +1,4 @@
 'use client';
-
-import { motion } from 'framer-motion';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,13 +12,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 import { toast } from 'react-toastify';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const Shimmer = () => (
-  <motion.div
-    className="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-700"
-    animate={{ opacity: [0.3, 0.6, 1, 0.6, 0.3] }}
-    transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-  />
+  <Skeleton className="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-700" />
 );
 
 export function ProfileDropdown() {
