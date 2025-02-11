@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [notes, setNotes] = useState([]);
   const [allNotes, setAllNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { user, loading } = useUser();
+  const { user, loading,fetchingLoggedUser,loggedUser } = useUser();
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -19,6 +19,13 @@ const Dashboard = () => {
       redirect('/login');
     }
   }, [user, loading]);
+
+  useEffect(() => {
+    if(!fetchingLoggedUser && loggedUser?.isVerified === false){
+      redirect('user/verify')
+    }
+  })
+
 
   useEffect(() => {
     if (user) {

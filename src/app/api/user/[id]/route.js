@@ -30,6 +30,7 @@ export async function GET(req, { params }) {
           role: account.role,
           avatar: account.image,
           email: account.email,
+          isVerified: account.isVerified
         },
       },
       { status: 200 }

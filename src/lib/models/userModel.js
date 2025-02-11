@@ -9,15 +9,15 @@ const accountSchema = new mongoose.Schema(
     role: { type: String, default: 'user' },
     image: {
       type: String,
-      default:
-        '#',
+      default: '#',
     },
+    isVerified: { type: Boolean, default: false },
     authProviderId: { type: String },
   },
   { timestamps: true }
 );
 
-// Check if the model already exists before defining it
-const Accounts = mongoose.models?.Accounts || mongoose.model('Accounts', accountSchema);
+const Accounts =
+  mongoose.models?.Accounts || mongoose.model('Accounts', accountSchema);
 
 export default Accounts;
