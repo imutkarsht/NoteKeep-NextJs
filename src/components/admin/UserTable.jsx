@@ -11,11 +11,17 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Trash, Eye, NotebookText } from 'lucide-react';
+import { Trash, Eye, NotebookText, Verified, MoreVertical, MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import TableShimmer from '@/components/admin/TableShimmer';
 import { toast } from 'react-toastify';
 import { useUser } from '@/context/UserContext';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@radix-ui/react-dropdown-menu';
 
 const UserTable = () => {
   const [users, setUsers] = useState([]);
@@ -91,12 +97,13 @@ const UserTable = () => {
       ) : error ? (
         <p className="text-red-500 text-center">{error}</p>
       ) : users.length === 0 ? (
-        <p className="text-center text-gray-500">No users found.</p>
+        <p className="text-center text-zinc-500">No users found.</p>
       ) : (
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead>Avatar</TableHead>
+              <TableHead>email</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Role</TableHead>
               <TableHead>Join Date</TableHead>
@@ -109,18 +116,26 @@ const UserTable = () => {
             {users.map((user) => (
               <TableRow key={user.id}>
                 <TableCell>
-                  <Avatar>
-                    <AvatarImage
-                      src={user.avatar || '/default-avatar.png'}
-                      alt={user.name}
-                    />
-                    <AvatarFallback>
-                      {user.name
-                        .split(' ')
-                        .map((letter) => letter.charAt(0).toUpperCase())}
-                    </AvatarFallback>
-                  </Avatar>
+                  <div className="flex items-center justify-between">
+                    <div className="relative flex items-start">
+                      <Avatar className="relative">
+                        <AvatarImage
+                          src={user.avatar || '/default-avatar.png'}
+                          alt={user.name}
+                        />
+                        <AvatarFallback>
+                          {user.name
+                            .split(' ')
+                            .map((letter) => letter.charAt(0).toUpperCase())}
+                        </AvatarFallback>
+                      </Avatar>
+                      {user?.isVerified && (
+                        <Verified size={16} className="text-white ml-2" />
+                      )}
+                    </div>
+                  </div>
                 </TableCell>
+                <TableCell>{user.email}</TableCell>
                 <TableCell className="font-medium">{user.name}</TableCell>
                 <TableCell>{user.role}</TableCell>
                 <TableCell>
@@ -129,26 +144,51 @@ const UserTable = () => {
                 <TableCell>
                   {new Date(user.joinDate).toLocaleTimeString()}
                 </TableCell>
-                <TableCell className="flex gap-2">
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href={`/private/admin/users/${user.id}`}>
-                      <Eye className="w-4 h-4 mr-1" /> Profile
-                    </Link>
-                  </Button>
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href={`/private/admin/users/${user.id}/notes`}>
-                      <NotebookText className="w-4 h-4 mr-1" /> Notes
-                    </Link>
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    onClick={() => handleDelete(user.id)}
-                    disabled={loggedUser?.id === user.id}
-                  >
-                    <Trash className="w-4 h-4 mr-1" /> Delete
-                  </Button>
+                <TableCell className="flex justify-end">
+                  <DropdownMenu  >
+                    <DropdownMenuTrigger  asChild>
+                      <Button variant="ghost" size="icon">
+                        <MoreHorizontal className="w-5 h-5" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      align="end"
+                      className="w-44 rounded-lg shadow-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800"
+                    >
+                      <DropdownMenuItem
+                        asChild
+                        className="flex items-center gap-2 px-4 py-2 rounded-md dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 cursor-pointer"
+                      >
+                        <Link
+                          href={`/private/admin/users/${user.id}`}
+                          className="flex items-center w-full"
+                        >
+                          <Eye className="w-4 h-4" /> Profile
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        asChild
+                        className="flex items-center gap-2 px-4 py-2 rounded-md dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 cursor-pointer"
+                      >
+                        <Link
+                          href={`/private/admin/users/${user.id}/notes`}
+                          className="flex items-center w-full"
+                        >
+                          <NotebookText className="w-4 h-4" /> Notes
+                        </Link>
+                      </DropdownMenuItem>
+                      <div className="border-t border-zinc-200 dark:border-zinc-700 my-1"></div>
+                      <DropdownMenuItem
+                        className="flex items-center gap-2 px-4 py-2 rounded-md dark:bg-zinc-800 text-red-600 dark:hover:text-red-200 dark:text-red-500 hover:bg-red-100 dark:hover:bg-red-900 cursor-pointer"
+                        onClick={() => handleDelete(user.id)}
+                        disabled={loggedUser?.id === user.id}
+                      >
+                        <Trash className="w-4 h-4" /> Delete
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </TableCell>
+
                 <TableCell>
                   {user.role === 'admin' ? (
                     <Button

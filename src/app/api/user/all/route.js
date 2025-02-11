@@ -6,24 +6,27 @@ export async function GET(req) {
   try {
     await dbConnect();
 
-
-    const accounts = await Accounts.find({ });
+    const accounts = await Accounts.find({});
 
     if (!accounts) {
-      return NextResponse.json({ error: 'Accounts not found' }, { status: 404 });
+      return NextResponse.json(
+        { error: 'Accounts not found' },
+        { status: 404 }
+      );
     }
 
     return NextResponse.json(
       {
         success: true,
         users: {
-          accounts: accounts.map(account => ({
+          accounts: accounts.map((account) => ({
             id: account._id,
             name: account.firstName + ' ' + account.lastName,
             role: account.role,
             avatar: account.image,
             email: account.email,
             joinDate: account.createdAt,
+            isVerified: account.isVerified,
           })),
         },
       },

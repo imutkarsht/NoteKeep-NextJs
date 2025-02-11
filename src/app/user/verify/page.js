@@ -15,6 +15,7 @@ const VerifyUser = () => {
 
   useEffect(() => {
     console.log(loggedUser);
+    if(!loading && !loggedUser) router.replace('/login')
     
     if (!loading && loggedUser?.isVerified) {
       router.replace('/dashboard');
@@ -96,7 +97,7 @@ const VerifyUser = () => {
             value={userOtp}
             onChange={(e) => setUserOtp(e.target.value)}
             placeholder="Enter OTP"
-            className="border p-2 rounded-md w-40 text-center text-black dark:text-white"
+            className="border p-2 rounded-md w-40 text-center text-black dark:text-black"
           />
           <button
             onClick={verifyOtp}

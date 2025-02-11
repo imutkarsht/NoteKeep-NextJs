@@ -5,8 +5,6 @@ export async function POST(req) {
     const { to } = await req.json(); 
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    
-    console.log({ to, otp });
 
     const transporter = nodemailer.createTransport({
       secure: true,
