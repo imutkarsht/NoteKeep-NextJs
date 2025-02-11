@@ -45,7 +45,7 @@ export function ProfileDropdown() {
             {loggedUser?.name
               ? loggedUser.name
                   .split(' ')
-                  .map((n) => n[0].toUpperCase())
+                  .map((n) => n[0])
                   .join('')
               : 'U'}
           </AvatarFallback>

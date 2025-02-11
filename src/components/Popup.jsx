@@ -45,7 +45,10 @@ export function Popup() {
 
       if (response.ok) {
         toast.success('Note Created Successfully');
-        console.log(data);
+        setTitle('')
+        setContent('')
+        setTags('')
+        setTimeout(() => window.location.reload() , 1000)
       } else {
         toast.error('Error creating note: ' + data.message);
       }

@@ -126,7 +126,7 @@ const UserTable = () => {
                         <AvatarFallback>
                           {user.name
                             .split(' ')
-                            .map((letter) => letter.charAt(0).toUpperCase())}
+                            .map((letter) => letter.charAt(0))}
                         </AvatarFallback>
                       </Avatar>
                       {user?.isVerified && (

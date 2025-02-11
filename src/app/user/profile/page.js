@@ -25,7 +25,7 @@ const UserProfile = () => {
             <AvatarFallback>
               {loggedUser?.name
                 .split(' ')
-                .map((e) => e.charAt(0).toUpperCase())}
+                .map((e) => e.charAt(0))}
             </AvatarFallback>
           </Avatar>
           <div>
