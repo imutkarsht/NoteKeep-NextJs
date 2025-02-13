@@ -58,7 +58,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`/api/delete/${id}`, { method: 'DELETE' });
+      const res = await fetch(`/api/notes/delete/${id}`, { method: 'DELETE' });
       const data = await res.json();
 
       if (res.ok) {

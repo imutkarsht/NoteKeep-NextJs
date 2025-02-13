@@ -35,7 +35,7 @@ export function UpdatePopup({ note, onUpdate }) {
     };
 
     try {
-      const response = await fetch(`/api/update/${note._id}`, {
+      const response = await fetch(`/api/notes/update/${note._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

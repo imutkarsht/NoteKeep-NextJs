@@ -33,7 +33,7 @@ export function Popup() {
     };
 
     try {
-      const response = await fetch('/api/create', {
+      const response = await fetch('/api/notes/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
