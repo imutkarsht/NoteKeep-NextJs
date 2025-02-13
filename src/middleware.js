@@ -2,24 +2,37 @@ import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 
 export async function middleware(req) {
-  console.log('Middleware ran');
-
   const token = await getToken({ req });
-
-  console.log("Token:", token);
-
 
   if (!token) {
     return NextResponse.json(
-      { message: "Not Authorized. Please log in." },
+      { message: 'Not Authorized. Please log in.' },
       { status: 401 }
+    );
+  }
+
+  const { pathname } = req.nextUrl;
+
+  if (pathname.startsWith('/api/admin') && token.role !== 'admin') {
+    return NextResponse.json(
+      { message: 'Forbidden. Admin access required.' },
+      { status: 403 }
+    );
+  }
+
+  if (
+    pathname.startsWith('/api/user') &&
+    !['user', 'admin'].includes(token.role)
+  ) {
+    return NextResponse.json(
+      { message: 'Forbidden. User access required.' },
+      { status: 403 }
     );
   }
 
   return NextResponse.next();
 }
 
-// Apply middleware to all `/api/notes/*` routes
 export const config = {
-  matcher: ['/api/notes/:path*'],
+  matcher: ['/api/admin/:path*', '/api/user/:path*'],
 };

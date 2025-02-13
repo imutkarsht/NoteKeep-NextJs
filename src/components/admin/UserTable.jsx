@@ -32,7 +32,7 @@ const UserTable = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('/api/user/all');
+        const response = await fetch('/api/admin/all-users');
         if (!response.ok) throw new Error('Failed to fetch users');
         const data = await response.json();
 
@@ -55,7 +55,7 @@ const UserTable = () => {
     if (!confirm('Are you sure you want to delete this user?')) return;
 
     try {
-      const response = await fetch(`/api/user/delete/${id}`, {
+      const response = await fetch(`/api/admin/delete/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) throw new Error('Failed to delete user');
@@ -69,7 +69,7 @@ const UserTable = () => {
 
   const handleAdminRight = async (id) => {
     try {
-      const response = await fetch(`/api/user/isadmin/${id}`, {
+      const response = await fetch(`/api/admin/isadmin/${id}`, {
         method: 'PUT',
       });
 
