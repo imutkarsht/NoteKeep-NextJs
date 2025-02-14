@@ -2,9 +2,13 @@ import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 
 export async function middleware(req) {
-  const token = await getToken({ req });
-  console.log("token: ", token);
-  
+  const token = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+    secureCookie: process.env.NODE_ENV === 'production',
+  });
+
+  console.log('token: ', token);
 
   if (!token) {
     return NextResponse.json(
@@ -14,8 +18,7 @@ export async function middleware(req) {
   }
 
   const { pathname } = req.nextUrl;
-  console.log("nextrl: ", req.nextUrl)
-  
+  console.log('nextrl: ', req.nextUrl);
 
   if (pathname.startsWith('/api/admin') && token.role !== 'admin') {
     return NextResponse.json(

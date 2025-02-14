@@ -7,6 +7,7 @@ import connectDB from '@/lib/db';
 import Accounts from '@/lib/models/userModel';
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: 'Credentials',
