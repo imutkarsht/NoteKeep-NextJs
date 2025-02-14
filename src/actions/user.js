@@ -1,12 +1,13 @@
 'use server';
 
+import { AccountsSchema } from '@/lib/schemas/UserSchema';
 import connectDB from '../lib/db';
 import Accounts from '../lib/models/userModel';
 import { compare, hash } from 'bcryptjs';
 
 const login = async (FormData) => {
-  const email = FormData.get('email')
-  const password = FormData.get('password')
+  const email = FormData.get('email');
+  const password = FormData.get('password');
 
   if (!email || !password) {
     return { success: false, message: 'Please provide email and password' };
@@ -14,12 +15,13 @@ const login = async (FormData) => {
 
   await connectDB();
 
-  const user = await Accounts.findOne({ email }).select("+password");
+  const user = await Accounts.findOne({ email }).select('+password');
 
   if (!user) return { success: false, message: 'Invalid email or password' };
 
   const isMatched = await compare(password, user.password);
-  if (!isMatched) return { success: false, message: 'Invalid email or password' };
+  if (!isMatched)
+    return { success: false, message: 'Invalid email or password' };
 
   return { success: true, message: 'Login successful' };
 };
@@ -30,8 +32,17 @@ const register = async (FormData) => {
   const email = FormData.get('email');
   const password = FormData.get('password');
 
-  if (!firstName || !lastName || !email || !password) {
-    return { success: false, message: 'Please fill all fields' };
+  const validatedCredentials = AccountsSchema.safeParse({
+    firstName,
+    lastName,
+    email,
+    password,
+  });
+  if (!validatedCredentials.success) {
+    return {
+      success: false,
+      message: validatedCredentials.error.errors[0].message,
+    };
   }
 
   await connectDB();

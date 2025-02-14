@@ -8,7 +8,6 @@ export async function middleware(req) {
     secureCookie: process.env.NODE_ENV === 'production',
   });
 
-  console.log('token: ', token);
 
   if (!token) {
     return NextResponse.json(
@@ -18,7 +17,6 @@ export async function middleware(req) {
   }
 
   const { pathname } = req.nextUrl;
-  console.log('nextrl: ', req.nextUrl);
 
   if (pathname.startsWith('/api/admin') && token.role !== 'admin') {
     return NextResponse.json(

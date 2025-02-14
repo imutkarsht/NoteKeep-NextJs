@@ -2,33 +2,30 @@ import { NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import Note from '@/lib/models/noteModel';
 import { ObjectId } from 'mongodb';
-
-connectDB();
+import { NoteSchema } from '@/lib/schemas/NoteSchema';
 
 export async function PUT(req, { params }) {
   try {
+    await connectDB();
     const { id } = await params;
 
     const { title, content, tags } = await req.json();
-
-    console.log(id);
 
     if (!id || !ObjectId.isValid(id)) {
       return NextResponse.json({ message: 'Invalid note ID' }, { status: 400 });
     }
 
-    if (!title || !content || !tags || tags.length === 0) {
+    const parsedData = NoteSchema.safeParse({ title, content, tags });
+    if (!parsedData.success) {
       return NextResponse.json(
-        { message: 'Missing required fields (title, content, or tags)' },
+        { message: 'Validation error', errors: parsedData.error.errors },
         { status: 400 }
       );
     }
 
-    const updatedNote = await Note.findByIdAndUpdate(
-      id,
-      { title, content, tags },
-      { new: true }
-    );
+    const updatedNote = await Note.findByIdAndUpdate(id, parsedData.data, {
+      new: true,
+    });
 
     if (updatedNote) {
       return NextResponse.json(
