@@ -4,7 +4,7 @@ import { ReviewCarousel } from './ReviewCarousel';
 
 const Reviews = () => {
   return (
-    <div className="flex flex-col items-center justify-center space-y-8 pb-8 border-b-2 border-zinc-200 dark:border-zinc-800 w-[80vw]">
+    <div className="flex flex-col items-center justify-center space-y-8 pb-6 mb-3 border-b-2 border-zinc-200 dark:border-zinc-800 w-[90vw] md:w-[80vw]">
       <h2 className="text-3xl font-bold text-teal-500">Reviews</h2>
 
       <ReviewCarousel />

@@ -23,7 +23,7 @@ export function ReviewCarousel() {
 
   return (
     <Carousel
-      className="w-full max-w-7xl"
+      className="w-full max-w-[screen] md:max-w-7xl px-4 py-2"
       value={currentIndex}
       onChange={setCurrentIndex}
     >
@@ -33,7 +33,7 @@ export function ReviewCarousel() {
             key={index}
             className="basis-full sm:basis-1/2 lg:basis-1/4 xl:basis-1/5"
           >
-            <div className="flex flex-col items-center bg-gradient-to-b from-zinc-50 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 text-black dark:text-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
+            <div className="flex flex-col items-center bg-gradient-to-b from-zinc-50 min-h-[290px] mb-2 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 text-black dark:text-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
               <img
                 src={review.avatar}
                 alt={review.name}

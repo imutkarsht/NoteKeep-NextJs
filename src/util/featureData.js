@@ -54,28 +54,28 @@ export const dummyReviews = [
    {
       name: "Sanya Kapoor",
       avatar: "https://i.pravatar.cc/150?img=20",
-      rating: 4,
+      rating: 3,
       comment:
          "Great app! Love the intuitive UI and cloud sync feature. A bit more customization would be a nice addition.",
    },
    {
       name: "Rahul Sharma",
       avatar: "https://i.pravatar.cc/150?img=30",
-      rating: 5,
+      rating: 4,
       comment:
          "Exactly what I needed for organizing my work notes. Simple, fast, and effective!",
    },
    {
       name: "Neha Verma",
       avatar: "https://i.pravatar.cc/150?img=40",
-      rating: 4,
+      rating: 5,
       comment:
          "I enjoy using this app! It would be amazing if it had color-coded notes for better organization.",
    },
    {
       name: "Vikram Raj",
       avatar: "https://i.pravatar.cc/150?img=50",
-      rating: 5,
+      rating: 3,
       comment:
          "Highly recommended! Secure, fast, and easy to use. The reminders feature keeps me on track.",
    },
