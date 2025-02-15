@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Hero = () => {
   return (
-    <div className="flex flex-col  space-x-8 md:flex-row items-center md:justify-around justify-center w-full max-w-[100vw] lg:max-w-[80vw] space-y-10 md:space-y-0 border-b-2 border-zinc-200 dark:border-zinc-800 pb-4 mt-32">
+    <div className="flex flex-col  space-x-8 md:flex-row items-center md:justify-around justify-center w-full max-w-[100vw] lg:max-w-[80vw] space-y-10 md:space-y-0 border-b-2 border-zinc-200 dark:border-zinc-800 pb-4 mt-4">
       {/* Text Section */}
       <div className="flex flex-col space-y-4 text-center md:text-left max-w-lg">
         <h1 className="text-3xl md:text-5xl font-extrabold text-teal-500 dark:text-teal-400">

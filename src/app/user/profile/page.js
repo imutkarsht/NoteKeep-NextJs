@@ -17,7 +17,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="max-w-lg mt-20 mx-auto p-6">
+    <div className="max-w-lg mt-2 mx-auto p-6">
       <Card className="shadow-md rounded-xl">
         <CardHeader className="flex items-center gap-4">
           <Avatar className="w-20 h-20">

@@ -25,7 +25,7 @@ export function ReviewCarousel() {
     <Carousel
       className="w-full max-w-7xl"
       value={currentIndex}
-      onValueChange={setCurrentIndex}
+      onChange={setCurrentIndex}
     >
       <CarouselContent>
         {dummyReviews.map((review, index) => (

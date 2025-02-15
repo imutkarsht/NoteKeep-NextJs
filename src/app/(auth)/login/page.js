@@ -54,7 +54,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen">
+    <div className="flex flex-col md:flex-row h-[60vh] md:h-[90vh]">
       <div className="flex-1 bg-white dark:bg-zinc-800 flex flex-col justify-center items-center px-6">
         <h1 className="text-3xl font-bold mb-4 text-zinc-800 dark:text-zinc-100">
           Sign In

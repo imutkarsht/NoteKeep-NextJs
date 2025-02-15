@@ -78,7 +78,7 @@ const VerifyUser = () => {
   }, [timer]);
 
   return (
-    <div className="mt-24 flex flex-col items-center justify-center">
+    <div className="mt-2 flex flex-col items-center justify-center">
       <h1 className="text-3xl text-center">Verify Your Account</h1>
       {!otpSent ? (
         <button

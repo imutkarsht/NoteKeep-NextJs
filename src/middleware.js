@@ -8,7 +8,6 @@ export async function middleware(req) {
     secureCookie: process.env.NODE_ENV === 'production',
   });
 
-
   if (!token) {
     return NextResponse.json(
       { message: 'Not Authorized. Please log in.' },

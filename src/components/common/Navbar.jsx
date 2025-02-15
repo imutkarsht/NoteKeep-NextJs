@@ -1,17 +1,17 @@
 import Link from 'next/link';
 import DarkModeToggle from './features/DarkModeToggle';
-import MobileMenu from '../homePage/MobileMenu';
 import { getSession } from '@/lib/getSession';
 import { ProfileDropdown } from './features/ProfileDropdown';
+import { Hamburger } from './Hamburger';
 
 const Navbar = async () => {
   const session = await getSession();
   const user = session?.user;
 
   return (
-    <nav className="fixed top-0 left-0 w-full flex items-center justify-between lg:justify-evenly bg-zinc-100 dark:bg-zinc-900 text-black dark:text-zinc-50 py-4 shadow-lg border-b-2 border-zinc-200 dark:border-zinc-800 z-50 px-6">
+    <nav className="top-0 left-0 w-full sticky flex items-center justify-between lg:justify-evenly bg-zinc-100/60 dark:bg-zinc-950/70 backdrop-blur-md text-black dark:text-zinc-50 py-4 shadow-md z-50 px-6">
       {/* Mobile Menu (Client-Side) */}
-      <MobileMenu user={user} />
+      <Hamburger user={user} />
       <h1 className="text-xl md:text-3xl font-bold">
         <Link href="/">Note Keep</Link>
       </h1>

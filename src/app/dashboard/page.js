@@ -99,7 +99,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-zinc-100 mt-16 dark:bg-zinc-900">
+    <div className="flex min-h-screen bg-zinc-100 dark:bg-zinc-900">
       <Sidebar />
       <div className="flex-1 p-8 overflow-y-auto">
         <div className="flex justify-between items-center mb-6">
