@@ -30,7 +30,13 @@ export default function RootLayout({ children }) {
         <UserProvider>
           <Navbar />
           {children}
-          <ToastContainer />
+          <ToastContainer
+            theme="colored"
+            position="bottom-right"
+            autoClose="3000"
+            pauseOnHover="true"
+            closeOnClick='true'
+          />
           <Footer />
         </UserProvider>
       </body>
