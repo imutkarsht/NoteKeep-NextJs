@@ -2,7 +2,9 @@
 
 NoteKeep is a web application built using Next.js, designed to help users manage their notes efficiently. The application leverages a modern tech stack including Next.js, NextAuth, MongoDB, Tailwind CSS, bcrypt, ShadCN UI, and Nodemailer. 
 
-It is a capstone project to learn both NextJS frontend and backend parts.## Tech Stack Overview
+It is a capstone project to learn both NextJS frontend and backend parts.
+
+## Tech Stack Overview
 
 - **Next.js**: A React framework that enables functionality such as server-side rendering and generating static websites.
 - **NextAuth**: An authentication library for Next.js applications, providing a secure and easy-to-implement authentication system.
@@ -76,4 +78,3 @@ setup .env.local with values given above
 
 Check out this project at 
 [Live Link](https://note-keep-next.vercel.app/)
-

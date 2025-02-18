@@ -27,16 +27,16 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen min-w-screen flex flex-col bg-zinc-50 dark:bg-zinc-800 text-black dark:text-white`}
       >
-        <UserProvider>
-          <Navbar />
-          {children}
           <ToastContainer
             theme="colored"
             position="bottom-right"
             autoClose="3000"
             pauseOnHover="true"
-            closeOnClick='true'
+            closeOnClick="true"
           />
+        <UserProvider>
+          <Navbar />
+          {children}
           <Footer />
         </UserProvider>
       </body>

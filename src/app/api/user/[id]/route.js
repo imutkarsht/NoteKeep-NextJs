@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Accounts from '@/lib/models/userModel';
+import Note from '@/lib/models/noteModel';
 
 export async function GET(req, { params }) {
   try {
     await dbConnect();
 
-    const { id } = await params;
+    const { id } = params;
 
     if (!id) {
       return NextResponse.json(
@@ -21,6 +22,9 @@ export async function GET(req, { params }) {
       return NextResponse.json({ error: 'Account not found' }, { status: 404 });
     }
 
+    const totalNotes = await Note.countDocuments({ createdBy: account._id });
+    
+
     return NextResponse.json(
       {
         success: true,
@@ -30,7 +34,9 @@ export async function GET(req, { params }) {
           role: account.role,
           avatar: account.image,
           email: account.email,
-          isVerified: account.isVerified
+          isVerified: account.isVerified,
+          createdAt:  new Date(account.createdAt).toLocaleDateString(),
+          totalNotes:totalNotes,
         },
       },
       { status: 200 }

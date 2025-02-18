@@ -1,77 +1,70 @@
 'use client';
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import BreadCrumbCustom from '@/components/ui/BreadCrumbCustom';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Pencil } from 'lucide-react';
+import ProfileSkeleton from '@/components/user-profile/ProfileSkeleton';
+import YourDetails from '@/components/user-profile/YourDetails';
 import { useUser } from '@/context/UserContext';
+import Image from 'next/image';
 import { toast } from 'react-toastify';
 
 const UserProfile = () => {
-  const [editing, setEditing] = useState(false);
-  const { loggedUser } = useUser();
+  const { loggedUser, fetchingLoggedUser } = useUser();
+  return fetchingLoggedUser ? (
+    <ProfileSkeleton />
+  ) : (
+    <div className="flex flex-col gap-4 p-6 bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 min-h-screen">
+      <BreadCrumbCustom
+        items={[{ text: 'Home', href: '/' }, { text: 'Profile' }]}
+      />
 
-  const handleSave = () => {
-    toast.info("comming soon..., feature in development")
-  };
+      <div className="flex flex-wrap items-start justify-center gap-6">
+        <div className="flex flex-col flex-wrap gap-6 items-center md:w-[25vw] w-[95vw] h-auto p-6 rounded-lg shadow-lg bg-zinc-200 dark:bg-zinc-800">
+          <Image
+            src={'https://avatar.iran.liara.run/public'}
+            alt="User-profile-image"
+            width={150}
+            height={150}
+            className="rounded-full"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..."
+          />
 
-  return (
-    <div className="max-w-lg mt-2 mx-auto p-6">
-      <Card className="shadow-md rounded-xl">
-        <CardHeader className="flex items-center gap-4">
-          <Avatar className="w-20 h-20">
-            <AvatarImage src={loggedUser?.avatar} alt={loggedUser?.name} />
-            <AvatarFallback>
-              {loggedUser?.name
-                .split(' ')
-                .map((e) => e.charAt(0))}
-            </AvatarFallback>
-          </Avatar>
-          <div>
-            <CardTitle className="text-xl font-semibold">
-              {loggedUser?.name}
-            </CardTitle>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              {loggedUser?.email}
-            </p>
+          <h3 className="text-3xl font-semibold text-zinc-800 dark:text-zinc-100">
+            {loggedUser?.name}
+          </h3>
+
+          <div className="flex md:flex-col items-start gap-3 p-4 rounded-lg shadow-md w-full">
+            <Badge
+              variant="outline"
+              className="text-sm border-2 border-teal-500 px-4 py-2"
+            >
+              Joined Since:
+              <span className="font-medium ml-2">{loggedUser?.createdAt}</span>
+            </Badge>
+
+            <Badge
+              variant="outline"
+              className="text-sm border-2 border-teal-500 px-4 py-2"
+            >
+              Total Notes: <span className="font-medium ml-2">{loggedUser?.totalNotes??0}</span>
+            </Badge>
           </div>
-        </CardHeader>
-        <CardContent>
-          {editing ? (
-            <div className="space-y-4">
-              <Input
-                value={loggedUser.name}
-                onChange={(e) =>
-                  setUpdatedUser({ ...updatedUser, name: e.target.value })
-                }
-                placeholder="Full Name"
-              />
-              <Input
-                value={loggedUser.email}
-                onChange={(e) =>
-                  setUpdatedUser({ ...updatedUser, email: e.target.value })
-                }
-                placeholder="Email Address"
-              />
-
-              <Button onClick={handleSave} className="w-full">
-                Save
-              </Button>
-            </div>
-          ) : (
-            <div>
-              <Button
-                variant="outline"
-                className="mt-4 w-full flex items-center gap-2"
-                onClick={() => setEditing(true)}
-              >
-                <Pencil className="w-4 h-4" /> Edit Profile
-              </Button>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+          <div className="flex items-center self-start justify-start space-x-2">
+            <Button className="mt-4 bg-teal-500 hover:bg-teal-400" onClick={() => toast.info('coming soon')}>
+              Edit Profile
+            </Button>
+            <Button
+              className="mt-4"
+              onClick={() => toast.info('coming soon')}
+              variant="destructive"
+            >
+              delete Profile
+            </Button>
+          </div>
+        </div>
+        <YourDetails user={loggedUser} />
+      </div>
     </div>
   );
 };
