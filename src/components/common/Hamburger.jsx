@@ -14,7 +14,7 @@ export function Hamburger({ user }) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <div className="md:hidden block">
+        <div className="lg:hidden block">
           <Menu className="size-9" />
         </div>
       </SheetTrigger>

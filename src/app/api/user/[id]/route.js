@@ -4,10 +4,13 @@ import Accounts from '@/lib/models/userModel';
 import Note from '@/lib/models/noteModel';
 
 export async function GET(req, { params }) {
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
   try {
     await dbConnect();
 
-    const { id } = params;
+    const { id } = await params;
 
     if (!id) {
       return NextResponse.json(
@@ -23,20 +26,20 @@ export async function GET(req, { params }) {
     }
 
     const totalNotes = await Note.countDocuments({ createdBy: account._id });
-    
 
     return NextResponse.json(
       {
         success: true,
         user: {
           id: account._id,
-          name: account.firstName + ' ' + account.lastName,
+          name:
+            capitalize(account.firstName) + ' ' + capitalize(account.lastName),
           role: account.role,
           avatar: account.image,
           email: account.email,
           isVerified: account.isVerified,
-          createdAt:  new Date(account.createdAt).toLocaleDateString(),
-          totalNotes:totalNotes,
+          createdAt: new Date(account.createdAt).toLocaleDateString(),
+          totalNotes: totalNotes,
         },
       },
       { status: 200 }
