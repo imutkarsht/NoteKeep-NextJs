@@ -9,7 +9,6 @@ export async function DELETE(req, { params }) {
   try {
     const { id } = await params;
 
-    console.log(id);
 
     if (!id || !ObjectId.isValid(id)) {
       return NextResponse.json({ message: 'Invalid note ID' }, { status: 400 });

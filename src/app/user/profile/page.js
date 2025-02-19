@@ -42,7 +42,7 @@ const UserProfile = () => {
 
           <button
             onClick={() => toast.info('In development')}
-            className="absolute top-36 left-[45%] z-50 bg-teal-500 rounded-full p-2"
+            className="absolute top-[38%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50 bg-teal-500 rounded-full p-2"
           >
             <CameraIcon size={32} />
           </button>

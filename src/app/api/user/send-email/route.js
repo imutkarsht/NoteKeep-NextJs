@@ -43,7 +43,6 @@ export async function POST(req) {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent:', info.response);
 
     return Response.json({ success: true, otp }, { status: 200 }); 
   } catch (error) {

@@ -14,7 +14,6 @@ const VerifyUser = () => {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
-    console.log(loggedUser);
     if(!loading && !loggedUser) router.replace('/login')
     
     if (!loading && loggedUser?.isVerified) {

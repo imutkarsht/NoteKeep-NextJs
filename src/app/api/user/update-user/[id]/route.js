@@ -6,7 +6,7 @@ import { AccountsSchema } from '@/lib/schemas/UserSchema';
 export async function PUT(req, { params }) {
   try {
     await connectDB();
-    const { id } = params; // No need for await here.
+    const { id } = await params; 
 
     const { firstName, lastName } = await req.json();
 

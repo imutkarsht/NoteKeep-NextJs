@@ -60,7 +60,6 @@ const register = async (FormData) => {
   });
 
   if (newUser) {
-    console.log('User created successfully');
     return { success: true, message: 'Account created successfully!' };
   }
 

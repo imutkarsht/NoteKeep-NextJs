@@ -27,7 +27,6 @@ const CreateNote = () => {
 
       if (response.ok) {
         alert('Note created successfully!');
-        console.log(data);
       } else {
         alert('Error creating note: ' + data.message);
       }
