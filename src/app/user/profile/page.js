@@ -4,9 +4,9 @@ import { Badge } from '@/components/ui/badge';
 import BreadCrumbCustom from '@/components/ui/BreadCrumbCustom';
 import { Button } from '@/components/ui/button';
 import ProfileSkeleton from '@/components/user-profile/ProfileSkeleton';
+import { UploadPopup } from '@/components/user-profile/UploadPopup';
 import YourDetails from '@/components/user-profile/YourDetails';
 import { useUser } from '@/context/UserContext';
-import { CameraIcon } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -40,11 +40,8 @@ const UserProfile = () => {
             </AvatarFallback>
           </Avatar>
 
-          <button
-            onClick={() => toast.info('In development')}
-            className="absolute top-[38%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50 bg-teal-500 rounded-full p-2"
-          >
-            <CameraIcon size={32} />
+          <button className="absolute top-[38%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50 bg-teal-500 rounded-full p-2">
+            <UploadPopup user={loggedUser} />
           </button>
 
           <h3 className="text-3xl font-semibold text-zinc-800 dark:text-zinc-100">

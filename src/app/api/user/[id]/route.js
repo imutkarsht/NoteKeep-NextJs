@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Accounts from '@/lib/models/userModel';
 import Note from '@/lib/models/noteModel';
+import { CLOUDINARY_IMAGE_PATH } from '@/config/config';
 
 export async function GET(req, { params }) {
   function capitalize(str) {
@@ -35,7 +36,7 @@ export async function GET(req, { params }) {
           name:
             capitalize(account.firstName) + ' ' + capitalize(account.lastName),
           role: account.role,
-          avatar: account.image,
+          avatar: CLOUDINARY_IMAGE_PATH + account.image,
           email: account.email,
           isVerified: account.isVerified,
           createdAt: new Date(account.createdAt).toLocaleDateString(),
