@@ -40,7 +40,7 @@ export function ProfileDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar>
-          <AvatarImage src={loggedUser?.avatar || ''} alt="user profile" />
+          <AvatarImage src={loggedUser?.avatar || ''} alt="user profile" className="bg-cover" />
           <AvatarFallback>
             {loggedUser?.name
               ? loggedUser.name

@@ -11,11 +11,10 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Trash, Eye, NotebookText, Verified, MoreVertical, MoreHorizontal } from 'lucide-react';
+import { Trash, Eye, NotebookText, Verified, MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import TableShimmer from '@/components/admin/TableShimmer';
 import { toast } from 'react-toastify';
-import { useUser } from '@/context/UserContext';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,11 +22,10 @@ import {
   DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu';
 
-const UserTable = () => {
+const UserTable = ({loggedUser}) => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { loggedUser } = useUser();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -120,7 +118,7 @@ const UserTable = () => {
                     <div className="relative flex items-start">
                       <Avatar className="relative">
                         <AvatarImage
-                          src={user.avatar || '/default-avatar.png'}
+                          src={user.avatar}
                           alt={user.name}
                         />
                         <AvatarFallback>
@@ -130,7 +128,7 @@ const UserTable = () => {
                         </AvatarFallback>
                       </Avatar>
                       {user?.isVerified && (
-                        <Verified size={16} className="text-white ml-2" />
+                        <Verified size={16} className="dark:text-white text-black ml-2" />
                       )}
                     </div>
                   </div>

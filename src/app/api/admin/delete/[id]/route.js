@@ -11,7 +11,7 @@ export async function DELETE(req, { params }) {
 
 
     if (!id || !ObjectId.isValid(id)) {
-      return NextResponse.json({ message: 'Invalid note ID' }, { status: 400 });
+      return NextResponse.json({ message: 'Invalid User ID' }, { status: 400 });
     }
 
     const deletedAccount = await Accounts.findByIdAndDelete(id);

@@ -45,7 +45,7 @@ export function UploadPopup({ user }) {
       formData.append('file', file);
 
       if (user?.avatar) {
-        await fetch('/api/user/delete-avatar', {
+        await fetch('/api/user/cloudinary/delete-avatar', {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export function UploadPopup({ user }) {
         });
       }
 
-      const response = await fetch('/api/user/upload', {
+      const response = await fetch('/api/user/cloudinary/upload', {
         method: 'POST',
         body: formData,
       });
@@ -70,7 +70,7 @@ export function UploadPopup({ user }) {
       toast.success('File uploaded successfully!');
 
       const updateResponse = await fetch(
-        `/api/user/update-avatar/${user?.id}`,
+        `/api/user/cloudinary/update-avatar/${user?.id}`,
         {
           method: 'PUT',
           headers: {
@@ -99,7 +99,7 @@ export function UploadPopup({ user }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <CameraIcon size={32} />
+        <CameraIcon size={32} className='text-white' />
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[450px] dark:bg-zinc-900 bg-white rounded-xl shadow-xl p-6">

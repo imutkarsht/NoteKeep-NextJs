@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Accounts from '@/lib/models/userModel';
+import { CLOUDINARY_IMAGE_PATH } from '@/config/config';
 
 export async function GET(req) {
   try {
@@ -23,7 +24,7 @@ export async function GET(req) {
             id: account._id,
             name: account.firstName + ' ' + account.lastName,
             role: account.role,
-            avatar: account.image,
+            avatar: CLOUDINARY_IMAGE_PATH + account.image,
             email: account.email,
             joinDate: account.createdAt,
             isVerified: account.isVerified,

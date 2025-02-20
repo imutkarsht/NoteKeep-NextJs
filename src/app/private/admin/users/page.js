@@ -1,13 +1,23 @@
+'use client';
+import TableShimmer from '@/components/admin/TableShimmer';
 import UserTable from '@/components/admin/UserTable';
-import React from 'react'
+import { useUser } from '@/context/UserContext';
+import React from 'react';
 
 const ManageUsers = () => {
+  const { loggedUser, fetchingLoggedUser } = useUser();
   return (
-    <div>
-      <h1 className="text-3xl font-semibold mb-4">Users Management</h1>
-      <UserTable />
+    <div className="flex flex-col">
+      <div className="flex flex-col">
+        <h1 className="text-3xl font-semibold mb-4">Users Management</h1>
+        {fetchingLoggedUser ? (
+          <TableShimmer />
+        ) : (
+          <UserTable loggedUser={loggedUser} />
+        )}
+      </div>
     </div>
   );
-}
+};
 
-export default ManageUsers
+export default ManageUsers;
