@@ -14,10 +14,10 @@ import { useUser } from '@/context/UserContext';
 import { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import Tiptap from '@/components/tiptap/Tiptap';
 
 export function Popup() {
   const { user, loading } = useUser();
-
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
@@ -78,7 +78,6 @@ export function Popup() {
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
-            {/* Title Field */}
             <div className="grid grid-cols-4 items-center gap-4">
               <Label
                 htmlFor="title"
@@ -94,26 +93,10 @@ export function Popup() {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-
-            {/* Description Field */}
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label
-                htmlFor="content"
-                className="text-right text-zinc-700 dark:text-zinc-300"
-              >
-                Content
-              </Label>
-              <textarea
-                id="content"
-                placeholder="Enter note content"
-                className="col-span-3 bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-white p-2 rounded-md resize-none"
-                rows="4"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-              />
+            <div>
+              <Tiptap setContent={setContent} />
             </div>
 
-            {/* Tags Field */}
             <div className="grid grid-cols-4 items-center gap-4">
               <Label
                 htmlFor="tags"

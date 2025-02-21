@@ -1,5 +1,6 @@
 import { UpdatePopup } from '@/components/dashboard/features/UpdatePopup';
 import { DeletePopup } from '@/components/dashboard/features/DeletePopup';
+import parse from 'html-react-parser'
 
 const NoteCard = ({ note, handleUpdatedNote, handleDelete }) => {
   return (
@@ -13,12 +14,11 @@ const NoteCard = ({ note, handleUpdatedNote, handleDelete }) => {
         {note.title}
       </h3>
 
-      <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-        {note.content.length > 100
-          ? `${note.content.substring(0, 100)}...`
-          : note.content}
+      <p className="text-sm tiptap text-gray-700 dark:text-gray-300 leading-relaxed">
+        {parse(note.content.length > 200
+          ? `${note.content.substring(0, 200)}...`
+          : note.content)}
       </p>
-
       <div className="mt-4  flex items-center self-end justify-between flex-wrap gap-2">
         <div className="flex items-center space-x-2">
           {note.tags?.map((tag, index) => (

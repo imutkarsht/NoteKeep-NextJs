@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -29,6 +30,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem
   }
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -56,124 +58,79 @@
     --chart-5: 340 75% 55%
   }
 }
+
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
 .tiptap {
-  all: revert; 
-  font-family: inherit;
-  font-size: 16px;
-  line-height: 1.5;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  min-height: 200px;
-  background-color: #fff;
-  outline: none;
+  @apply bg-transparent rounded-md min-h-[150px] max-h-[40vh] p-3 text-zinc-800 dark:text-zinc-200 outline-none;
 }
 
 .tiptap p {
-  margin: 1em 0;
+  @apply my-2;
 }
 
 .tiptap h1 {
-  font-size: 2em;
-  font-weight: bold;
-  margin: 0.67em 0;
+  @apply text-2xl font-bold my-3;
 }
 
 .tiptap h2 {
-  font-size: 1.75em;
-  font-weight: bold;
-  margin: 0.75em 0;
+  @apply text-xl font-bold my-2;
 }
 
 .tiptap h3 {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin: 0.85em 0;
+  @apply text-lg font-bold my-2;
 }
 
 .tiptap ul {
-  list-style: disc;
-  padding-left: 20px;
+  @apply list-disc pl-5;
 }
 
 .tiptap ol {
-  list-style: decimal;
-  padding-left: 20px;
+  @apply list-decimal pl-5;
 }
 
 .tiptap li {
-  margin-bottom: 4px;
+  @apply mb-1;
 }
 
 .tiptap strong {
-  font-weight: bold;
+  @apply font-bold;
 }
 
 .tiptap em {
-  font-style: italic;
+  @apply italic;
 }
 
 .tiptap u {
-  text-decoration: underline;
+  @apply underline;
 }
 
 .tiptap blockquote {
-  border-left: 4px solid #ccc;
-  padding-left: 10px;
-  font-style: italic;
-  color: #555;
+  @apply border-l-4 border-zinc-400 dark:border-zinc-500 pl-3 italic text-zinc-600 dark:text-zinc-400;
 }
 
 .tiptap pre {
-  background-color: #f5f5f5;
-  padding: 10px;
-  border-radius: 5px;
-  overflow-x: auto;
+  @apply bg-zinc-200 dark:bg-zinc-700 p-3 rounded-md overflow-x-auto;
 }
 
 .tiptap code {
-  font-family: monospace;
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 3px;
-}
-
-.tiptap-toolbar button {
-  all: unset;
-  background-color: #ddd;
-  border-radius: 4px;
-  padding: 5px 10px;
-  margin: 2px;
-  cursor: pointer;
-}
-
-.tiptap-toolbar button:hover {
-  background-color: #ccc;
-}
-
-.tiptap-toolbar button.is-active {
-  background-color: #666;
-  color: #fff;
-}
-.tiptap {
-  @apply p-4 border border-zinc-300 dark:border-zinc-600 rounded-md bg-white dark:bg-zinc-800 min-h-[150px] text-zinc-800 dark:text-zinc-200;
+  @apply font-mono bg-zinc-300 dark:bg-zinc-600 px-2 py-1 rounded;
 }
 
 .toolbar {
-  @apply flex flex-wrap items-center gap-2 p-3 bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-md;
+  @apply flex flex-wrap items-center gap-2 p-3 bg-zinc-100 dark:bg-zinc-800 rounded-lg;
 }
 
 .toolbar button {
-  @apply px-3 py-1 rounded-lg text-sm font-semibold transition-all duration-200 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-300 dark:border-zinc-600;
+  @apply px-3 py-1 rounded-lg text-sm font-semibold transition-all bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-300 dark:border-zinc-600;
 }
 
 .toolbar button:hover {

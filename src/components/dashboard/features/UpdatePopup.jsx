@@ -1,3 +1,4 @@
+import TiptapUpdate from '@/components/tiptap/TiptapUpdate';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -60,11 +61,11 @@ export function UpdatePopup({ note, onUpdate }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button
-          
-          className="rounded-full px-2 text-black hover:text-black hover:bg-teal-400  transition-all shadow-md hover:shadow-lg"
-        >
-          <Pencil size={22} className="dark:text-white hover:text-white text-black" />
+        <button className="rounded-full px-2 text-black hover:text-black hover:bg-teal-400  transition-all shadow-md hover:shadow-lg">
+          <Pencil
+            size={22}
+            className="dark:text-white hover:text-white text-black"
+          />
         </button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-zinc-100 dark:bg-zinc-800 rounded-lg p-6">
@@ -94,21 +95,8 @@ export function UpdatePopup({ note, onUpdate }) {
             </div>
 
             {/* Description Field */}
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label
-                htmlFor="content"
-                className="text-right text-zinc-700 dark:text-zinc-300"
-              >
-                Content
-              </Label>
-              <textarea
-                id="content"
-                placeholder="Enter note content"
-                className="col-span-3 bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-white p-2 rounded-md resize-none"
-                rows="4"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-              />
+            <div>
+              <TiptapUpdate content={content} setContent={setContent} />
             </div>
 
             {/* Tags Field */}
