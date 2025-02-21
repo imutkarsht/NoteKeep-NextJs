@@ -64,3 +64,122 @@
     @apply bg-background text-foreground;
   }
 }
+
+.tiptap {
+  all: revert; 
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  min-height: 200px;
+  background-color: #fff;
+  outline: none;
+}
+
+.tiptap p {
+  margin: 1em 0;
+}
+
+.tiptap h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.67em 0;
+}
+
+.tiptap h2 {
+  font-size: 1.75em;
+  font-weight: bold;
+  margin: 0.75em 0;
+}
+
+.tiptap h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.85em 0;
+}
+
+.tiptap ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.tiptap ol {
+  list-style: decimal;
+  padding-left: 20px;
+}
+
+.tiptap li {
+  margin-bottom: 4px;
+}
+
+.tiptap strong {
+  font-weight: bold;
+}
+
+.tiptap em {
+  font-style: italic;
+}
+
+.tiptap u {
+  text-decoration: underline;
+}
+
+.tiptap blockquote {
+  border-left: 4px solid #ccc;
+  padding-left: 10px;
+  font-style: italic;
+  color: #555;
+}
+
+.tiptap pre {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.tiptap code {
+  font-family: monospace;
+  background-color: #eee;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.tiptap-toolbar button {
+  all: unset;
+  background-color: #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.tiptap-toolbar button:hover {
+  background-color: #ccc;
+}
+
+.tiptap-toolbar button.is-active {
+  background-color: #666;
+  color: #fff;
+}
+.tiptap {
+  @apply p-4 border border-zinc-300 dark:border-zinc-600 rounded-md bg-white dark:bg-zinc-800 min-h-[150px] text-zinc-800 dark:text-zinc-200;
+}
+
+.toolbar {
+  @apply flex flex-wrap items-center gap-2 p-3 bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-md;
+}
+
+.toolbar button {
+  @apply px-3 py-1 rounded-lg text-sm font-semibold transition-all duration-200 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-300 dark:border-zinc-600;
+}
+
+.toolbar button:hover {
+  @apply bg-zinc-200 dark:bg-zinc-700;
+}
+
+.toolbar button.is-active {
+  @apply bg-teal-500 dark:bg-teal-700 text-white border-teal-600;
+}
