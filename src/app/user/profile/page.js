@@ -2,10 +2,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import BreadCrumbCustom from '@/components/ui/BreadCrumbCustom';
 import { Button } from '@/components/ui/button';
+import { DeleteModal } from '@/components/user-profile/DeleteModal';
 import ProfileSkeleton from '@/components/user-profile/ProfileSkeleton';
 import { UploadPopup } from '@/components/user-profile/UploadPopup';
 import YourDetails from '@/components/user-profile/YourDetails';
 import { useUser } from '@/context/UserContext';
+import { signOut } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -17,6 +19,32 @@ const UserProfile = () => {
 
   const handleEditProfile = () => {
     setIsClicked(!isClicked);
+  };
+
+  const handleDeleteUser = async () => {
+    try {
+      const userId = loggedUser?.id;
+
+      if (!userId) {
+        toast.error('User ID is missing.');
+        return;
+      }
+
+      const response = await fetch(`/api/user/delete-account/${userId}`, {
+        method: 'DELETE',
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("Account Deleted...")
+        signOut({ callbackUrl: '/' });
+      } else {
+        toast.error('Failed to delete user:', data.message);
+      }
+    } catch (error) {
+      toast.error('Error deleting user:', error);
+    }
   };
 
   return fetchingLoggedUser ? (
@@ -75,13 +103,7 @@ const UserProfile = () => {
             >
               Edit Profile
             </Button>
-            <Button
-              className="w-full"
-              onClick={() => toast.info('Coming soon')}
-              variant="destructive"
-            >
-              Delete Profile
-            </Button>
+            <DeleteModal handleDeleteUser={handleDeleteUser} />
           </div>
         </div>
 
