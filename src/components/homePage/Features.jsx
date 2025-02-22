@@ -1,4 +1,4 @@
-import { featureData } from '@/util/featureData';
+import { featureData } from '@/config/util/featureData';
 import React from 'react';
 
 const Features = () => {

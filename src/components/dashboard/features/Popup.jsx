@@ -69,8 +69,8 @@ export function Popup() {
           Create Note
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-zinc-100 dark:bg-zinc-800 rounded-lg p-6">
-        <DialogHeader>
+      <DialogContent className="md:max-w-[60vw] md:min-h-[60vh] min-h-[80vh] bg-zinc-100 dark:bg-zinc-800 rounded-lg p-6">
+        <DialogHeader className="hidden">
           <DialogTitle className="text-teal-500">Create Note</DialogTitle>
           <DialogDescription className="text-zinc-700 dark:text-zinc-300">
             Enter the details of your note below
@@ -78,49 +78,51 @@ export function Popup() {
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label
-                htmlFor="title"
-                className="text-right text-zinc-700 dark:text-zinc-300"
+            <div className="flex items-center justify-between gap-2 flex-wrap ">
+              <div className='flex space-x-2 flex-wrap gap-2'>
+                <div className="items-center md:w-fit w-full flex gap-4">
+                  <Label
+                    htmlFor="title"
+                    className="text-right text-zinc-700 dark:text-zinc-300"
+                  >
+                    Title
+                  </Label>
+                  <Input
+                    id="title"
+                    placeholder="Enter note title"
+                    className="bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-white"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </div>
+                <div className="items-center flex md:w-fit w-full gap-4">
+                  <Label
+                    htmlFor="tags"
+                    className="text-right text-zinc-700 dark:text-zinc-300"
+                  >
+                    Tags
+                  </Label>
+                  <Input
+                    id="tags"
+                    placeholder="Add tags (e.g., work, personal)"
+                    className="bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-white"
+                    value={tags}
+                    onChange={(e) => setTags(e.target.value)}
+                  />
+                </div>
+              </div>
+              <Button
+                type="submit"
+                className="bg-teal-500 md:w-fit w-full hover:bg-teal-400 text-dark dark:text-white"
               >
-                Title
-              </Label>
-              <Input
-                id="title"
-                placeholder="Enter note title"
-                className="col-span-3 bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-white"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
+                Save Note
+              </Button>
             </div>
             <div>
               <Tiptap setContent={setContent} />
             </div>
-
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label
-                htmlFor="tags"
-                className="text-right text-zinc-700 dark:text-zinc-300"
-              >
-                Tags
-              </Label>
-              <Input
-                id="tags"
-                placeholder="Add tags (e.g., work, personal)"
-                className="col-span-3 bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-white"
-                value={tags}
-                onChange={(e) => setTags(e.target.value)}
-              />
-            </div>
           </div>
-          <DialogFooter>
-            <Button
-              type="submit"
-              className="bg-teal-500 hover:bg-teal-400 text-dark dark:text-white"
-            >
-              Save Note
-            </Button>
-          </DialogFooter>
+          <DialogFooter></DialogFooter>
         </form>
       </DialogContent>
     </Dialog>

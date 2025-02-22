@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useState, useEffect } from 'react';
 import {
   Carousel,
@@ -7,16 +7,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { dummyReviews } from '@/util/featureData';
+import { dummyReviews } from '@/config/util/featureData';
 
 export function ReviewCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const totalSlides = Math.ceil(dummyReviews.length / 3); 
+  const totalSlides = Math.ceil(dummyReviews.length / 3);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-    }, 4000); 
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [totalSlides]);
@@ -40,7 +40,9 @@ export function ReviewCarousel() {
                 className="w-16 h-16 rounded-full border-2 border-white dark:border-black shadow-md"
               />
               <h3 className="text-lg font-semibold mt-3">{review.name}</h3>
-              <p className="text-teal-800 text-xl">{'⭐'.repeat(review.rating)}</p>
+              <p className="text-teal-800 text-xl">
+                {'⭐'.repeat(review.rating)}
+              </p>
               <p className="text-center text-sm text-black/80 dark:text-white/80 mt-2">
                 {review.comment}
               </p>

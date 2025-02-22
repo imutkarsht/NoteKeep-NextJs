@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { Popup } from '@/components/Popup';
+import { Popup } from '@/components/dashboard/features/Popup';
 import { motion } from 'framer-motion';
 import { PanelLeftClose, PanelRightClose } from 'lucide-react';
 import { useUser } from '@/context/UserContext';

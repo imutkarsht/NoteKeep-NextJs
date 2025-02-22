@@ -1,10 +1,10 @@
 import { UpdatePopup } from '@/components/dashboard/features/UpdatePopup';
 import { DeletePopup } from '@/components/dashboard/features/DeletePopup';
-import parse from 'html-react-parser'
+import parse from 'html-react-parser';
 
 const NoteCard = ({ note, handleUpdatedNote, handleDelete }) => {
   return (
-    <div className="relative p-6 max-w-md bg-gradient-to-br from-white to-gray-100 dark:from-zinc-800 dark:to-zinc-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out border border-gray-200 dark:border-zinc-700">
+    <div className="relative flex flex-col p-6 max-w-md max-h-[40vh] bg-gradient-to-br from-white to-gray-100 dark:from-zinc-800 dark:to-zinc-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out border border-gray-200 dark:border-zinc-700">
       <div className="absolute top-3 right-3 flex space-x-2">
         <UpdatePopup note={note} onUpdate={handleUpdatedNote} />
         <DeletePopup note={note} onDelete={() => handleDelete(note._id)} />
@@ -19,8 +19,9 @@ const NoteCard = ({ note, handleUpdatedNote, handleDelete }) => {
           ? `${note.content.substring(0, 200)}...`
           : note.content)}
       </p>
-      <div className="mt-4  flex items-center self-end justify-between flex-wrap gap-2">
-        <div className="flex items-center space-x-2">
+
+      <div className="flex items-center justify-between p-2 mt-auto gap-2">
+        <div className="flex flex-wrap gap-2">
           {note.tags?.map((tag, index) => (
             <span
               key={index}
