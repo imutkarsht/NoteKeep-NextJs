@@ -139,7 +139,7 @@ export function UploadPopup({ user }) {
             />
 
             {/* Choose File Button */}
-            <label htmlFor="fileInput" className="w-full flex justify-center">
+            <label htmlFor="fileInput" className="w-full hidden justify-center">
               <Button
                 variant="outline"
                 className="flex items-center gap-2 border-2 border-teal-500 px-4 py-2 rounded-lg text-teal-500 hover:bg-teal-500 hover:text-white transition"

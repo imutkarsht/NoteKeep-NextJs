@@ -146,3 +146,14 @@
 .toolbar button.is-active {
   @apply bg-teal-500 dark:bg-teal-700 text-white border-teal-600;
 }
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
