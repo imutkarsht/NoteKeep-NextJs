@@ -115,7 +115,7 @@ export default function SignUpPage() {
           </button>
 
           <button
-            onClick={() => toast.info('Feature coming soon...')}
+            onClick={() => signIn('google')}
             className="flex-1 bg-white text-black border rounded-md border-zinc-300 flex justify-center items-center py-3 transition hover:bg-zinc-200"
           >
             <FaGoogle className="text-xl" />

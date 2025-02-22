@@ -86,7 +86,7 @@ export const authOptions = {
 
     async session({ session, token }) {
       if (token?.sub) {
-        session.user.id = token.sub; // Use token.sub for ID consistency
+        session.user.id = token.sub; 
         session.user.email = token.email;
         session.user.image = token.image;
         session.user.firstName = token.firstName;
@@ -98,7 +98,7 @@ export const authOptions = {
 
     async jwt({ token, user }) {
       if (user) {
-        token.sub = user.id; // Use `sub` instead of `id`
+        token.sub = user.id; 
         token.email = user.email;
         token.image = user.image;
         token.firstName = user.firstName;

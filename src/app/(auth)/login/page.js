@@ -68,7 +68,7 @@ const LoginPage = () => {
           </button>
           <button
             className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center"
-            onClick={() => toast.warning('Feature not available yet!')}
+            onClick={() => signIn('google')}
           >
             <FaGoogle />
           </button>
