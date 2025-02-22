@@ -62,7 +62,7 @@ const LoginPage = () => {
         <div className="flex gap-4 mb-6">
           <button
             className="w-10 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-full flex justify-center items-center"
-            onClick={() => toast.warning('Feature not available yet!')}
+            onClick={() => signIn('github')}
           >
             <FaGithub />
           </button>

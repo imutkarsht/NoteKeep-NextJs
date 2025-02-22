@@ -2,6 +2,7 @@
 
 import { register } from '@/actions/user';
 import { useUser } from '@/context/UserContext';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -106,7 +107,7 @@ export default function SignUpPage() {
 
         <div className="flex gap-4 mt-4 mb-2 w-full max-w-sm">
           <button
-            onClick={() => toast.info('Feature coming soon...')}
+            onClick={() => signIn('github')}
             className="flex-1 bg-black rounded-md text-white border border-zinc-700 flex justify-center items-center py-3 transition hover:bg-zinc-900"
           >
             <FaGithub className="text-xl" />

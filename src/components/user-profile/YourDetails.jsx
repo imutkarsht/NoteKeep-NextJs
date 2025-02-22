@@ -85,7 +85,7 @@ const YourDetails = ({ user, isClicked }) => {
           <Label htmlFor="bio">Bio</Label>
           <Textarea
             id="bio"
-            disabled={!isClicked}
+            disabled
             value={user?.bio}
             placeholder="Tell us about yourself"
             className="dark:bg-zinc-900"
@@ -97,7 +97,7 @@ const YourDetails = ({ user, isClicked }) => {
           <Input
             id="dob"
             type="date"
-            disabled={!isClicked}
+            disabled
             className="dark:bg-zinc-900"
           />
         </div>

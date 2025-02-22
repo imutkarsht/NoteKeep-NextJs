@@ -8,9 +8,9 @@ export async function GET(req, { params }) {
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
+
   try {
     await dbConnect();
-
     const { id } = await params;
 
     if (!id) {
@@ -20,7 +20,9 @@ export async function GET(req, { params }) {
       );
     }
 
-    const account = await Accounts.findOne({ _id: id });
+    const account = await Accounts.findOne({
+      $or: [{ _id: id }, { authProviderId: id }],
+    });
 
     if (!account) {
       return NextResponse.json({ error: 'Account not found' }, { status: 404 });
@@ -36,7 +38,7 @@ export async function GET(req, { params }) {
           name:
             capitalize(account.firstName) + ' ' + capitalize(account.lastName),
           role: account.role,
-          avatar: CLOUDINARY_IMAGE_PATH + account.image,
+          avatar: account.image.startsWith('https') ? account.image : CLOUDINARY_IMAGE_PATH + account.image,
           email: account.email,
           isVerified: account.isVerified,
           createdAt: new Date(account.createdAt).toLocaleDateString(),
