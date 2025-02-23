@@ -1,52 +1,86 @@
-# NoteKeep
+# 📒 NoteKeep  
 
-NoteKeep is a web application built using Next.js, designed to help users manage their notes efficiently. The application leverages a modern tech stack including Next.js, NextAuth, MongoDB, Tailwind CSS, bcrypt, ShadCN UI, and Nodemailer. 
+NoteKeep is a **Next.js** web application designed to help users manage their notes efficiently.  
+This project serves as a **capstone** to learn both frontend and backend development with **Next.js**.  
 
-It is a capstone project to learn both NextJS frontend and backend parts.
+The application leverages a modern tech stack, including **Next.js, NextAuth, MongoDB, Tailwind CSS, bcrypt, ShadCN UI, Cloudinary, Tiptap, and Nodemailer** to provide a seamless and feature-rich experience.
 
-## Tech Stack Overview
+---
 
-- **Next.js**: A React framework that enables functionality such as server-side rendering and generating static websites.
-- **NextAuth**: An authentication library for Next.js applications, providing a secure and easy-to-implement authentication system.
-- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom user interfaces.
-- **bcrypt**: A library to help hash passwords, ensuring secure storage of user credentials.
-- **ShadCN UI**: A collection of reusable components for building user interfaces.
-- **Nodemailer**: A module for Node.js applications to allow easy email sending.
-- **Cloudinary**: A Image Storage and Provider to help users upload their images and access them efficiently
-## Features
+## 🚀 Tech Stack Overview  
 
-- Light/dark mode toggle
-- OAuth Support (Upcoming)
-- CRUD Opeartions on Notes
-- Markdown Support using Tiptap (upcoming)
-- Image Management using Cloudinary (upcoming)
-- Admin Panel for user and notes control and analytics
-- Clean responsive UI using shadcn and Tailwind css
-- Email Support using Nodemailer
+- **Next.js** – A React framework enabling server-side rendering (SSR) and static site generation (SSG).  
+- **NextAuth** – A secure authentication library for Next.js with OAuth support.  
+- **Tailwind CSS** – A utility-first CSS framework for building responsive and customizable UIs.  
+- **bcrypt** – A library for securely hashing user passwords.  
+- **ShadCN UI** – A collection of pre-built, accessible UI components.  
+- **Nodemailer** – A module for handling email functionalities such as account verification.  
+- **Cloudinary** – A cloud-based image storage solution for efficient image uploads and retrieval.  
+- **Tiptap** – A rich text editor that supports markdown, enhancing note-taking functionality.  
 
+---
 
+## ✨ Features  
 
-## Environment Variables
+- 🌗 **Light/Dark Mode Toggle**  
+- 🔐 **OAuth Support (Google & GitHub)**  
+- 📝 **CRUD Operations on Notes**  
+- 📜 **Markdown Support via Tiptap**  
+- 🖼️ **Image Management using Cloudinary**  
+- 🛠️ **Admin Panel for User & Notes Management**  
+- 📊 **Analytics & Dashboard for Admins**  
+- 📧 **Email Support using Nodemailer**  
+- 🎨 **Clean, Responsive UI using ShadCN & Tailwind CSS**  
 
-To run this project, you will need to add the following environment variables to your .env file
+---
 
-`MONGO_URI`
+## 📌 Routes  
 
-`NEXTAUTH_SECRET`
+### **🔓 Public Routes**  
+- `/about`  
+- `/home`  
+- `/login`  
+- `/signup`  
 
-`GITHUB_CLIENT_ID`
+### **👤 User Routes**  
+- `/dashboard`  
+- `/user/profile`  
+- `/user/verify`  
+- `/api/user/**`  
+- `/contact`  
 
-`GITHUB_CLIENT_SECRET`
+### **🛑 Admin Routes**  
+- `/private/admin/*`  
+- `/api/admin/*`  
 
-`GOOGLE_CLIENT_ID`
+---
 
-`GOOGLE_CLIENT_SECRET`
+## 🔧 Environment Variables  
 
-`MAIL_USER`
+To run this project, add the following environment variables to your `.env.local` file:
 
-`MAIL_PASS`
+```env
+MONGO_URI=
+NEXTAUTH_SECRET=
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+MAIL_USER=
+MAIL_PASS=
+NEXTAUTH_URL=
+CLOUDINARY_API_KEY=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_SECRET=
+```
 
-`NEXTAUTH_URL`
+## Requirements
+
+- Node.js (Version 20 or later)
+- OAuth API Keys (Google & GitHub)
+- Cloudinary API Credentials (API Key, Secret, and Cloud Name)
+- Email Credentials (Mail Username & Password for Nodemailer)
+- MongoDB URI
 
 
 ## Installation
@@ -72,7 +106,20 @@ setup .env.local with values given above
 
 ![signup](https://i.ibb.co/BKFWwKDP/brave-Qu-BTVv-QEq4.png)
 
+## 🤝 Contributing
+Contributions are welcome!
 
+1. Fork the repository
+2. Create a new branch
+3. Make your changes
+4. Submit a pull request
+
+## 📩 Contact
+For any queries or suggestions, feel free to reach out! 🚀
+
+📧 Email: [email](uktiwari023@gmail.com)
+🔗 
+LinkedIn: [imutkarsht](https://www.linkedin.com/in/imutkarsht)
 
 ## Deployment
 

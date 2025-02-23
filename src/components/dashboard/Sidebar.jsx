@@ -36,10 +36,10 @@ const Sidebar = () => {
             <Link href="/dashboard">View Notes</Link>
           </li>
           <li className="cursor-pointer hover:bg-teal-500 hover:text-white  p-2 rounded">
-            <Link href="/dashboard/bin">Bin</Link>
+            <Link href="#">Bin</Link>
           </li>
           <li className="cursor-pointer hover:bg-teal-500 hover:text-white  p-2 rounded">
-            <Link href="/dashboard/search">Search Notes</Link>
+            <Link href="#">Search Notes</Link>
           </li>
         </ul>
       </motion.div>

@@ -4,10 +4,16 @@ import { useUser } from "@/context/UserContext";
 import Feedback from "@/components/contact-us/Feedback";
 import BugReport from "@/components/contact-us/BugReport";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { redirect } from "next/navigation";
 
 export default function Contact() {
-  const { user } = useUser();
+  const { user,loading } = useUser();
+  
   const [selectedOption, setSelectedOption] = useState("review");
+
+  if(!user && !loading) {
+    redirect('/login')
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-900 dark:to-zinc-800 p-6 md:p-10">

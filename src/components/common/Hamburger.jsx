@@ -44,7 +44,7 @@ export function Hamburger({ user }) {
             </Link>
           </li>
           <li className="hover:text-teal-700 dark:hover:text-teal-400 transition-all text-xl">
-            <Link href="/features">
+            <Link href="/#feature">
               <SheetClose>Features</SheetClose>
             </Link>
           </li>

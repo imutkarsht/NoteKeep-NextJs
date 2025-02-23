@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaGlobe, FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 const Footer = () => {
   return (
     <div className="mt-auto py-8 bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50">
@@ -22,7 +22,7 @@ const Footer = () => {
               About
             </Link>
             <Link
-              href="/features"
+              href="/#feature"
               className="hover:text-teal-500 transition-all"
             >
               Features
@@ -44,25 +44,25 @@ const Footer = () => {
           {/* Social Icons */}
           <div className="flex space-x-4 mt-4 sm:mt-0">
             <a
-              href="#"
+              href="https://www.instagram.com/im_ut_2308/"
               className="text-xl text-zinc-900 hover:text-teal-500 dark:text-zinc-50 dark:hover:text-teal-500"
             >
-              <FaFacebook />
+              <FaInstagram />
             </a>
             <a
-              href="#"
+              href="https://imutkarsht-portfolio.vercel.app/"
               className="text-xl text-zinc-900 hover:text-teal-500 dark:text-zinc-50 dark:hover:text-teal-500"
             >
-              <FaTwitter />
+              <FaGlobe />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/imutkarsht"
               className="text-xl text-zinc-900 hover:text-teal-500 dark:text-zinc-50 dark:hover:text-teal-500"
             >
               <FaLinkedin />
             </a>
             <a
-              href="#"
+              href="https://github.com/imutkarsht"
               className="text-xl text-zinc-900 hover:text-teal-500 dark:text-zinc-50 dark:hover:text-teal-500"
             >
               <FaGithub />

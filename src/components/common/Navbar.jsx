@@ -25,7 +25,7 @@ const Navbar = async () => {
           <Link href="/contact">Contact us</Link>
         </li>
         <li className="hover:text-teal-700 dark:hover:text-teal-400 transition-all text-xl">
-          <Link href="/features">Features</Link>
+          <Link href="/#feature">Features</Link>
         </li>
         {user && (
           <li className="hover:text-teal-700 dark:hover:text-teal-400 transition-all text-xl">
