@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import {
   Table,
@@ -11,7 +10,13 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Trash, Eye, NotebookText, Verified, MoreHorizontal } from 'lucide-react';
+import {
+  Trash,
+  Eye,
+  NotebookText,
+  Verified,
+  MoreHorizontal,
+} from 'lucide-react';
 import Link from 'next/link';
 import TableShimmer from '@/components/admin/TableShimmer';
 import { toast } from 'react-toastify';
@@ -22,7 +27,7 @@ import {
   DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu';
 
-const UserTable = ({loggedUser}) => {
+const UserTable = ({ loggedUser }) => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -117,10 +122,7 @@ const UserTable = ({loggedUser}) => {
                   <div className="flex items-center justify-between">
                     <div className="relative flex items-start">
                       <Avatar className="relative">
-                        <AvatarImage
-                          src={user.avatar}
-                          alt={user.name}
-                        />
+                        <AvatarImage src={user.avatar} alt={user.name} />
                         <AvatarFallback>
                           {user.name
                             .split(' ')
@@ -128,7 +130,10 @@ const UserTable = ({loggedUser}) => {
                         </AvatarFallback>
                       </Avatar>
                       {user?.isVerified && (
-                        <Verified size={16} className="dark:text-white text-black ml-2" />
+                        <Verified
+                          size={16}
+                          className="dark:text-white text-black ml-2"
+                        />
                       )}
                     </div>
                   </div>
@@ -143,8 +148,8 @@ const UserTable = ({loggedUser}) => {
                   {new Date(user.joinDate).toLocaleTimeString()}
                 </TableCell>
                 <TableCell className="flex justify-end">
-                  <DropdownMenu  >
-                    <DropdownMenuTrigger  asChild>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
                       <Button variant="ghost" size="icon">
                         <MoreHorizontal className="w-5 h-5" />
                       </Button>

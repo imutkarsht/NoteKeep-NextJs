@@ -38,7 +38,10 @@ const Sidebar = () => {
             <Link href="/private/admin/notes">Notes</Link>
           </li>
           <li className="cursor-pointer hover:bg-teal-500 hover:text-white p-2 rounded">
-            <Link href="/private/admin/insights">Insights</Link>
+            <Link href="/private/admin/reviews">Reviews</Link>
+          </li>
+          <li className="cursor-pointer hover:bg-teal-500 hover:text-white p-2 rounded">
+            <Link href="/private/admin">Insights</Link>
           </li>
         </ul>
       </motion.div>

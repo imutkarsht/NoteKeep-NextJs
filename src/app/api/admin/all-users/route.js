@@ -24,7 +24,9 @@ export async function GET(req) {
             id: account._id,
             name: account.firstName + ' ' + account.lastName,
             role: account.role,
-            avatar: CLOUDINARY_IMAGE_PATH + account.image,
+            avatar: account.image.startsWith('https')
+              ? account.image
+              : CLOUDINARY_IMAGE_PATH + account.image,
             email: account.email,
             joinDate: account.createdAt,
             isVerified: account.isVerified,
