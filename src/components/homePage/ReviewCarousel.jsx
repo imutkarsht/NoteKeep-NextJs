@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { dummyReviews } from '@/config/util/featureData';
+import Image from 'next/image';
 
 export function ReviewCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -34,9 +35,11 @@ export function ReviewCarousel() {
             className="basis-full sm:basis-1/2 lg:basis-1/4 xl:basis-1/5"
           >
             <div className="flex flex-col items-center bg-gradient-to-b from-zinc-50 min-h-[290px] mb-2 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 text-black dark:text-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
-              <img
+              <Image
                 src={review.avatar}
                 alt={review.name}
+                width={150}
+                height={150}
                 className="w-16 h-16 rounded-full border-2 border-white dark:border-black shadow-md"
               />
               <h3 className="text-lg font-semibold mt-3">{review.name}</h3>

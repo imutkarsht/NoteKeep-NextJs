@@ -1,4 +1,5 @@
 import { Github, Linkedin, Globe } from 'lucide-react';
+import Image from 'next/image';
 
 export default function AboutPage() {
   return (
@@ -49,9 +50,11 @@ export default function AboutPage() {
             Meet the Creator
           </h2>
           <div className="mt-4 flex flex-col items-center">
-            <img
+            <Image
               src="https://avatars.githubusercontent.com/u/143305812?s=400&u=9406db4e57ed492cb18f46509ddd6c3e14fc501c&v=4"
               alt="Creator Avatar"
+              width={200}
+              height={200}
               className="w-24 h-24 rounded-full shadow-lg border-4 border-teal-500"
             />
             <p className="mt-3 text-lg font-semibold text-zinc-800 dark:text-zinc-200">

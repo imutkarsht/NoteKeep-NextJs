@@ -12,6 +12,7 @@ import { CameraIcon, File, Upload, Loader2 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import Image from 'next/image';
 
 export function UploadPopup({ user }) {
   const [file, setFile] = useState(null);
@@ -115,8 +116,10 @@ export function UploadPopup({ user }) {
         {/* Profile Picture Preview */}
         <div className="flex flex-col items-center space-y-4">
           {imageUrl ? (
-            <img
+            <Image
               src={imageUrl}
+              height={200}
+              width={200}
               alt="Uploaded file"
               className="w-24 h-24 rounded-full border-2 border-teal-400 shadow-md object-cover"
             />
